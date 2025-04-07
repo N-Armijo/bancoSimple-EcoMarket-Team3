@@ -29,6 +29,14 @@ public class Direction {
     @Column(name = "creation_date", nullable = false)
     private Date creation_date;
 
+    @ManyToOne
+    @JoinColumn(name = "direction_user", nullable = false)
+    private User direction_User;
+
+    @ManyToOne
+    @JoinColumn(name = "direction_commune", nullable = false)
+    private Commune direction_Commune;
+
     public Direction() {
     }
 

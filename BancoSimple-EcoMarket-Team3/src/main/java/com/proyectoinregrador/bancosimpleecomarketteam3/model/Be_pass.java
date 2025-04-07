@@ -14,6 +14,10 @@ public class Be_pass {
     @Column(name = "password", nullable = false, unique = true)
     private String password;
 
+    @OneToOne
+    @JoinColumn(name = "pass_account", nullable = false)
+    private Bank_account pass_Account;
+
     public Be_pass() {
     }
 

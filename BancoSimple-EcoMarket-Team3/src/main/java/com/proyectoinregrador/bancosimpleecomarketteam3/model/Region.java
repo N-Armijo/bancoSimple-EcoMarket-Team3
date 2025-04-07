@@ -12,6 +12,10 @@ public class Region {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "region_country", nullable = false)
+    private Country region_Country;
+
     public Region() {
     }
 

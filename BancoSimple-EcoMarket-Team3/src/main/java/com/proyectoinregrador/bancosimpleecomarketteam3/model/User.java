@@ -1,11 +1,7 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.model;
-
 import jakarta.persistence.*;
-import jdk.jfr.Description;
-import org.springframework.boot.autoconfigure.web.WebProperties;
-
-import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
@@ -32,10 +28,22 @@ public class User {
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phone_number;
 
+    @ManyToOne
+    @JoinColumn(name = "user_country", nullable = false)
+    private Country user_Country;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id")
+    )
+    private List<Rol> userRole;
+
     public User() {
     }
 
-    public User(Long id, String name, String email, String password, Date birthday, Date registration_date, String phone_number) {
+    public User(Long id, String name, String email, String password, Date birthday, Date registration_date, String phone_number, Country user_Country, List<Rol> userRole) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -43,6 +51,8 @@ public class User {
         this.birthday = birthday;
         this.registration_date = registration_date;
         this.phone_number = phone_number;
+        this.user_Country = user_Country;
+        this.userRole = userRole;
     }
 
     public Long getId() {
@@ -101,6 +111,22 @@ public class User {
         this.phone_number = phone_number;
     }
 
+    public Country getUser_Country() {
+        return user_Country;
+    }
+
+    public void setUser_Country(Country user_Country) {
+        this.user_Country = user_Country;
+    }
+
+    public List<Rol> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(List<Rol> userRole) {
+        this.userRole = userRole;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -111,6 +137,8 @@ public class User {
                 ", birthday=" + birthday +
                 ", registration_date=" + registration_date +
                 ", phone_number='" + phone_number + '\'' +
+                ", user_Country=" + user_Country +
+                ", userRole=" + userRole +
                 '}';
     }
 }

@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "order_Product")
+public class Order_Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,8 +14,8 @@ public class Order {
     @Column(name = "direction_alias", nullable = false)
     private String direction_alias;
 
-    @Column(name = "fecha", nullable = false)
-    private Date fecha;
+    @Column(name = "dateP", nullable = false)
+    private Date dateP;
 
     @Column(name = "total", nullable = false)
     private Integer total;
@@ -23,15 +23,25 @@ public class Order {
     @Column(name = "state", nullable = false)
     private String state;
 
-    public Order() {
+    @ManyToOne
+    @JoinColumn(name = "order_user", nullable = false)
+    private User order_User;
+
+    @ManyToOne
+    @JoinColumn(name = "order_account", nullable = false)
+    private Bank_account order_Account;
+
+    public Order_Product() {
     }
 
-    public Order(Long id, String direction_alias, Date fecha, Integer total, String state) {
+    public Order_Product(Long id, String direction_alias, Date dateP, Integer total, String state, User order_User, Bank_account order_Account) {
         this.id = id;
         this.direction_alias = direction_alias;
-        this.fecha = fecha;
+        this.dateP = dateP;
         this.total = total;
         this.state = state;
+        this.order_User = order_User;
+        this.order_Account = order_Account;
     }
 
     public Long getId() {
@@ -50,12 +60,12 @@ public class Order {
         this.direction_alias = direction_alias;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getDateP() {
+        return dateP;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setDateP(Date dateP) {
+        this.dateP = dateP;
     }
 
     public Integer getTotal() {
@@ -74,14 +84,32 @@ public class Order {
         this.state = state;
     }
 
+    public User getOrder_User() {
+        return order_User;
+    }
+
+    public void setOrder_User(User order_User) {
+        this.order_User = order_User;
+    }
+
+    public Bank_account getOrder_Account() {
+        return order_Account;
+    }
+
+    public void setOrder_Account(Bank_account order_Account) {
+        this.order_Account = order_Account;
+    }
+
     @Override
     public String toString() {
-        return "order{" +
+        return "Order_Product{" +
                 "id=" + id +
                 ", direction_alias='" + direction_alias + '\'' +
-                ", fecha=" + fecha +
+                ", dateP=" + dateP +
                 ", total=" + total +
                 ", state='" + state + '\'' +
+                ", order_User=" + order_User +
+                ", order_Account=" + order_Account +
                 '}';
     }
 }

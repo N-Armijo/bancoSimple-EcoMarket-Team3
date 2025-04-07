@@ -26,6 +26,10 @@ public class Bank_card {
     @Column(name = "secret_number", nullable = false)
     private Integer secret_number;
 
+    @ManyToOne
+    @JoinColumn(name = "card_account", nullable = false)
+    private Bank_account card_Account;
+
     public Bank_card() {
     }
 

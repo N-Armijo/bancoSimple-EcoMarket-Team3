@@ -15,6 +15,10 @@ public class Commune {
     @Column(name = "zip_code", nullable = false)
     private String zip_code;
 
+    @ManyToOne
+    @JoinColumn(name = "commune_region", nullable = false)
+    private Region commune_Region;
+
     public Commune() {
     }
 

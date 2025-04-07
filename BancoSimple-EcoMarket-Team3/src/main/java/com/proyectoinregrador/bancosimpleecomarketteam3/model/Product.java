@@ -2,6 +2,8 @@ package com.proyectoinregrador.bancosimpleecomarketteam3.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "product")
 public class Product {
@@ -9,8 +11,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
-    private String name;
+    @Column(name = "product_name", nullable = false, unique = true)
+    private String product_name;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -21,15 +23,29 @@ public class Product {
     @Column(name = "stock", nullable = false)
     private Integer stock;
 
+    @ManyToOne
+    @JoinColumn(name = "product_user", nullable = false)
+    private User product_User;
+
+    @ManyToMany
+    @JoinTable(
+            name = "product_categories",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "categories_id")
+    )
+    private List<Categories> productCategories;
+
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Integer price, Integer stock) {
+    public Product(Long id, String name, String description, Integer price, Integer stock, User product_User, List<Categories> productCategories) {
         this.id = id;
-        this.name = name;
+        this.product_name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
+        this.product_User = product_User;
+        this.productCategories = productCategories;
     }
 
     public Long getId() {
@@ -41,11 +57,11 @@ public class Product {
     }
 
     public String getName() {
-        return name;
+        return product_name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.product_name = name;
     }
 
     public String getDescription() {
@@ -72,15 +88,32 @@ public class Product {
         this.stock = stock;
     }
 
+    public User getProduct_User() {
+        return product_User;
+    }
+
+    public void setProduct_User(User product_User) {
+        this.product_User = product_User;
+    }
+
+    public List<Categories> getProductCategories() {
+        return productCategories;
+    }
+
+    public void setProductCategories(List<Categories> productCategories) {
+        this.productCategories = productCategories;
+    }
+
     @Override
     public String toString() {
-        return "product{" +
+        return "Product{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + product_name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", stock=" + stock +
+                ", product_User=" + product_User +
+                ", productCategories=" + productCategories +
                 '}';
     }
 }
-

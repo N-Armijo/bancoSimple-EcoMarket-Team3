@@ -29,6 +29,14 @@ public class Transaction {
     @Column(name = "state", nullable = false)
     private String state;
 
+    @OneToOne
+    @JoinColumn(name = "transaction_Origin", nullable = false)
+    private Bank_account transaction_Origin;
+
+    @OneToOne
+    @JoinColumn(name = "transaction_destiny", nullable = false)
+    private Bank_account transaction_Destiny;
+
     public Transaction() {
     }
 

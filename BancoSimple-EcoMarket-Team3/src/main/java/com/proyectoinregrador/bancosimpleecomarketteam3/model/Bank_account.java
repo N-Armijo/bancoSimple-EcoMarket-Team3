@@ -19,6 +19,10 @@ public class Bank_account {
     @Column(name = "balance", nullable = false)
     private BigDecimal balance;
 
+    @ManyToOne
+    @JoinColumn(name = "bank_user", nullable = false)
+    private User bank_User;
+
     public Bank_account() {
     }
 

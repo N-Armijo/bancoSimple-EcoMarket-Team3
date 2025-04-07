@@ -29,6 +29,14 @@ public class Audit_ticket {
     @Column(name = "ip", nullable = false)
     private String ip;
 
+    @ManyToOne
+    @JoinColumn(name = "audit_User", nullable = false)
+    private User audit_User;
+
+    @ManyToOne
+    @JoinColumn(name = "audit_desc", nullable = false)
+    private Desc_ticket audit_Desc;
+
     public Audit_ticket() {
     }
 
