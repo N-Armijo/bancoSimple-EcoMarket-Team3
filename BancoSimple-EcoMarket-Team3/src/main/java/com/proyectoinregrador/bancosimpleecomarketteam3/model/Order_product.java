@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class Order_Product {
+public class Order_product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

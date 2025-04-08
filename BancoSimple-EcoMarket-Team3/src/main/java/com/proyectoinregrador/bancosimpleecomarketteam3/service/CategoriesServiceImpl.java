@@ -1,6 +1,8 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Audit_ticket;
+import com.proyectoinregrador.bancosimpleecomarketteam3.model.Categories;
+import com.proyectoinregrador.bancosimpleecomarketteam3.repository.CategoriesRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,25 +12,29 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CategoriesServiceImpl implements Audit_ticketService {
+public class CategoriesServiceImpl implements CategoriesService {
+
+    private final CategoriesRepository categoriesRepository;
 
     @Override
-    public Audit_ticket findById(Long id) {
-        return null;
+    public Categories findById(Long id) {
+        return categoriesRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Categories not found")
+        );
     }
 
     @Override
-    public List<Audit_ticket> findAllAudit_ticket() {
-        return List.of();
+    public List<Categories> findAllCategories() {
+        return categoriesRepository.findAll();
     }
 
     @Override
-    public Audit_ticket saveAudit_ticket(Audit_ticket audit_ticket) {
-        return null;
+    public Categories saveCategories(Categories Categories) {
+        return categoriesRepository.save(Categories);
     }
 
     @Override
-    public void deleteAudit_ticketById(Long id) {
-
+    public void deleteCategoriesById(Long id) {
+        categoriesRepository.deleteById(id);
     }
 }

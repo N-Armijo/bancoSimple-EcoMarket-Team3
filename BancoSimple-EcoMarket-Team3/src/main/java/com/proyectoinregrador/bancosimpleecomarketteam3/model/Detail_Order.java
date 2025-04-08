@@ -2,9 +2,6 @@ package com.proyectoinregrador.bancosimpleecomarketteam3.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.query.Order;
-
-import java.util.Date;
 
 @Entity
 @Table(name = "detail_order")
@@ -30,7 +27,7 @@ public class Detail_Order {
 
     @ManyToOne
     @JoinColumn(name = "detail_order", nullable = false)
-    private Order_Product detail_Order;
+    private Order_product detail_Order;
 
 
 }

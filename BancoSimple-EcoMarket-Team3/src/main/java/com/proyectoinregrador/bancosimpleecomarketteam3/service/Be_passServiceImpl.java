@@ -1,6 +1,8 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Audit_ticket;
+import com.proyectoinregrador.bancosimpleecomarketteam3.model.Be_pass;
+import com.proyectoinregrador.bancosimpleecomarketteam3.repository.Be_passRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,25 +12,29 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class Be_passServiceImpl  implements Audit_ticketService {
+public class Be_passServiceImpl  implements Be_passService {
+
+    private final Be_passRepository be_passRepository;
 
     @Override
-    public Audit_ticket findById(Long id) {
-        return null;
+    public Be_pass findById(Long id) {
+        return be_passRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Be_pass not found")
+        );
     }
 
     @Override
-    public List<Audit_ticket> findAllAudit_ticket() {
-        return List.of();
+    public List<Be_pass> findAllBe_pass() {
+        return be_passRepository.findAll();
     }
 
     @Override
-    public Audit_ticket saveAudit_ticket(Audit_ticket audit_ticket) {
-        return null;
+    public Be_pass saveBe_pass(Be_pass Be_pass) {
+        return be_passRepository.save(Be_pass);
     }
 
     @Override
-    public void deleteAudit_ticketById(Long id) {
-
+    public void deleteBe_passById(Long id) {
+        be_passRepository.deleteById(id);
     }
 }

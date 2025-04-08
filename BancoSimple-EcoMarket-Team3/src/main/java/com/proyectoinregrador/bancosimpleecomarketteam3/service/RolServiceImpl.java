@@ -1,6 +1,8 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Rol;
+import com.proyectoinregrador.bancosimpleecomarketteam3.model.Rol;
+import com.proyectoinregrador.bancosimpleecomarketteam3.repository.RolRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,23 +14,27 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RolServiceImpl implements RolService {
 
+    private final RolRepository rolRepository;
+
     @Override
     public Rol findById(Long id) {
-        return null;
+        return rolRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Rol not found")
+        );
     }
 
     @Override
     public List<Rol> findAllRol() {
-        return List.of();
+        return rolRepository.findAll();
     }
 
     @Override
-    public Rol saveRol(Rol rol) {
-        return null;
+    public Rol saveRol(Rol Rol) {
+        return rolRepository.save(Rol);
     }
 
     @Override
     public void deleteRolById(Long id) {
-
+        rolRepository.deleteById(id);
     }
 }
