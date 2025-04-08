@@ -1,11 +1,17 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "Be_pass")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Be_pass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,35 +24,5 @@ public class Be_pass {
     @JoinColumn(name = "pass_account", nullable = false)
     private Bank_account pass_Account;
 
-    public Be_pass() {
-    }
 
-    public Be_pass(Long id, String password) {
-        this.id = id;
-        this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Be_pass{" +
-                "id=" + id +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }
