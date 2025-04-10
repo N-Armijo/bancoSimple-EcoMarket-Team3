@@ -16,7 +16,7 @@ public class CategoriesRestController {
 
     private final CategoriesServiceImpl categoriesService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/categories/{id}")
     public ResponseEntity<Categories> findById(@PathVariable Long id) {
         return ResponseEntity.ok(categoriesService.findById(id));
     }
@@ -26,7 +26,7 @@ public class CategoriesRestController {
         return ResponseEntity.ok(categoriesService.findAllCategories());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Categories> saveCategory(@RequestBody Categories newCategory) {
         return new ResponseEntity<>(categoriesService.saveCategories(newCategory), HttpStatus.CREATED);
     }

@@ -16,7 +16,7 @@ public class CountryRestController {
 
     private final CountryServiceImpl countryService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/country/{id}")
     public ResponseEntity<Country> findById(@PathVariable Long id) {
         return ResponseEntity.ok(countryService.findById(id));
     }
@@ -26,7 +26,7 @@ public class CountryRestController {
         return ResponseEntity.ok(countryService.findAllCountry());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Country> saveCountry(@RequestBody Country newCountry) {
         return new ResponseEntity<>(countryService.saveCountry(newCountry), HttpStatus.CREATED);
     }

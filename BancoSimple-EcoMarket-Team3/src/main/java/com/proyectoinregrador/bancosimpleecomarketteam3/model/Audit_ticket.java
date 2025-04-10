@@ -46,5 +46,4 @@ public class Audit_ticket {
     @JoinColumn(name = "audit_desc", nullable = false)
     private Desc_ticket audit_Desc;
 
-
 }

@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/descTickets")
+@RequestMapping("/desctickets")
 public class Desc_ticketRestController {
 
     private final Desc_ticketServiceImpl desc_ticketService;
 
-    @GetMapping("/{id}")
+    @GetMapping("descticket/{id}")
     public ResponseEntity<Desc_ticket> findById(@PathVariable Long id) {
         return ResponseEntity.ok(desc_ticketService.findById(id));
     }
@@ -26,7 +26,7 @@ public class Desc_ticketRestController {
         return ResponseEntity.ok(desc_ticketService.findAllDesc_ticket());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Desc_ticket> saveDescTicket(@RequestBody Desc_ticket newDescTicket) {
         return new ResponseEntity<>(desc_ticketService.saveDesc_ticket(newDescTicket), HttpStatus.CREATED);
     }

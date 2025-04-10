@@ -26,7 +26,7 @@ public class Bank_cardRestController {
         return ResponseEntity.ok(bankCardService.findAllBank_card());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Bank_card> saveBankCard(@RequestBody Bank_card newCard){
         return new ResponseEntity<>(bankCardService.saveBank_card(newCard), HttpStatus.CREATED);
     }

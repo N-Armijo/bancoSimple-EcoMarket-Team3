@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/products")
+@RequestMapping("/products")
 public class ProductRestController {
 
     private final ProductServiceImpl productService;
 
 
-    @GetMapping("/Product/{id}")
+    @GetMapping("/product/{id}")
     public Product getProduct(@PathVariable Long id) {
         return productService.findById(id);
     }
@@ -28,13 +28,14 @@ public class ProductRestController {
         return ResponseEntity.ok(productService.findAllProduct());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Product> addProduct(@RequestBody Product product){
         return new ResponseEntity<>(productService.saveProduct(product), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id){
+        productService.deleteProductById(id);
         return new ResponseEntity<>("The Product was deleted",HttpStatus.OK);
     }
 

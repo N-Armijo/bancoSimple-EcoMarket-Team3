@@ -28,7 +28,7 @@ public class Bank_accountRestController {
         return ResponseEntity.ok(bankAccountService.findAllBank_account());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Bank_account> saveAccount(@RequestBody Bank_account newAccount){
         return new ResponseEntity<>(bankAccountService.saveBank_account(newAccount), HttpStatus.CREATED);
     }
