@@ -2,6 +2,7 @@ package com.proyectoinregrador.bancosimpleecomarketteam3.api;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Product;
 import com.proyectoinregrador.bancosimpleecomarketteam3.service.ProductService;
+import com.proyectoinregrador.bancosimpleecomarketteam3.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductRestController {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
 
 
     @GetMapping("/Product/{id}")
