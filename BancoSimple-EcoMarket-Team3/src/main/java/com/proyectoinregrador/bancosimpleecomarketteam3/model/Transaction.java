@@ -38,11 +38,11 @@ public class Transaction {
     @Column(name = "state", nullable = false)
     private String state;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "transaction_Origin", nullable = false)
     private Bank_account transaction_Origin;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "transaction_destiny", nullable = false)
     private Bank_account transaction_Destiny;
 
