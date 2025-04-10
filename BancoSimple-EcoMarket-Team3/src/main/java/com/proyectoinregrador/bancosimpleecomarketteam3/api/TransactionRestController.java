@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/Transactions")
+@RequestMapping("/transactions")
 public class TransactionRestController {
 
     
     private final TransactionServiceImpl transactionService;
 
-    @GetMapping("/Transaction/{id}")
+    @GetMapping("/transaction/{id}")
     public Transaction getTransaction(@PathVariable Long id) {
         return transactionService.findById(id);
     }
@@ -28,13 +28,14 @@ public class TransactionRestController {
         return ResponseEntity.ok(transactionService.findAllTransaction());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Transaction> addTransaction(@RequestBody Transaction transaction){
         return new ResponseEntity<>(transactionService.saveTransaction(transaction), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteTransaction(@PathVariable Long id){
+        transactionService.deleteTransactionById(id);
         return new ResponseEntity<>("The Transaction was deleted",HttpStatus.OK);
     }
 

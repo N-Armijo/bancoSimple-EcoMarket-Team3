@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/order_products")
+@RequestMapping("/orderproducts")
 public class Order_productRestController {
     private final Order_productServiceImpl order_productService;
 
-    @GetMapping("/Order_product/{id}")
+    @GetMapping("/orderproduct/{id}")
     public Order_product getOrder_product(@PathVariable Long id) {
         return order_productService.findById(id);
     }
@@ -25,13 +25,14 @@ public class Order_productRestController {
         return ResponseEntity.ok(order_productService.findAllOrder());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Order_product> addOrder_product(@RequestBody Order_product order_product){
         return new ResponseEntity<>(order_productService.saveOrder(order_product), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteOrder_product(@PathVariable Long id){
+        order_productService.deleteOrderById(id);
         return new ResponseEntity<>("The Order_product was deleted",HttpStatus.OK);
     }
 

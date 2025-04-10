@@ -16,7 +16,7 @@ public class CommuneRestController {
 
     private final CommuneServiceImpl communeService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/commune/{id}")
     public ResponseEntity<Commune> findById(@PathVariable Long id) {
         return ResponseEntity.ok(communeService.findById(id));
     }
@@ -26,7 +26,7 @@ public class CommuneRestController {
         return ResponseEntity.ok(communeService.findAllCommune());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Commune> saveCommune(@RequestBody Commune newCommune) {
         return new ResponseEntity<>(communeService.saveCommune(newCommune), HttpStatus.CREATED);
     }

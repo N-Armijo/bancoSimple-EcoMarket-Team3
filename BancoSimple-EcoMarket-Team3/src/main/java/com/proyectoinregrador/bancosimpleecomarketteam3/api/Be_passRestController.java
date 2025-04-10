@@ -26,7 +26,7 @@ public class Be_passRestController {
         return ResponseEntity.ok(bePassService.findAllBe_pass());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Be_pass> saveBePass(@RequestBody Be_pass newPass){
         return new ResponseEntity<>(bePassService.saveBe_pass(newPass), HttpStatus.CREATED);
     }

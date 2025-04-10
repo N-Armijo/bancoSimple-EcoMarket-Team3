@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/rols")
+@RequestMapping("/rols")
 public class RolRestController {
 
     private final RolServiceImpl rolService;
 
 
-    @GetMapping("/Rol/{id}")
+    @GetMapping("/rol/{id}")
     public Rol getRol(@PathVariable Long id) {
         return rolService.findById(id);
     }
@@ -28,13 +28,14 @@ public class RolRestController {
         return ResponseEntity.ok(rolService.findAllRol());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Rol> addRol(@RequestBody Rol rol){
         return new ResponseEntity<>(rolService.saveRol(rol), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteRol(@PathVariable Long id){
+        rolService.deleteRolById(id);
         return new ResponseEntity<>("The Rol was deleted",HttpStatus.OK);
     }
 

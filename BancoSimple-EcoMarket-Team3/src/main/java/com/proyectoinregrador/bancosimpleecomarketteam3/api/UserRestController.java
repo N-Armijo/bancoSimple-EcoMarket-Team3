@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserRestController {
 
     private final UserServiceImpl userService;
@@ -26,13 +26,14 @@ public class UserRestController {
         return ResponseEntity.ok(userService.findAllUser());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<User> addUser(@RequestBody User user){
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id){
+        userService.deleteUserById(id);
         return new ResponseEntity<>("The User was deleted",HttpStatus.OK);
     }
 

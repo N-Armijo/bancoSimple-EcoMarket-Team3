@@ -27,24 +27,27 @@ public class Audit_ticketRestController {
         return ResponseEntity.ok(audit_ticketService.findAllAudit_ticket());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Audit_ticket> saveAudit_ticket(@RequestBody Audit_ticket newTicket){
         return new ResponseEntity<>(audit_ticketService.saveAudit_ticket(newTicket), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteAudit_ticketById(@PathVariable Long id){
+        audit_ticketService.deleteAudit_ticketById(id);
         return new ResponseEntity<>("The Ticket was deleated",HttpStatus.OK);
     }
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<Audit_ticket> updateAudit_ticketById(@PathVariable Long id, @RequestBody Audit_ticket ticketEdited){
         Audit_ticket audit_ticketSelected = audit_ticketService.findById(id);
-        audit_ticketSelected.setAction(audit_ticketSelected.getAction());
-        audit_ticketSelected.setAffected_record(audit_ticketSelected.getAffected_record());
-        audit_ticketSelected.setDetails(audit_ticketSelected.getDetails());
-        audit_ticketSelected.setDate(audit_ticketSelected.getDate());
-        audit_ticketSelected.setIp(audit_ticketSelected.getIp());
+        audit_ticketSelected.setAction(ticketEdited.getAction());
+        audit_ticketSelected.setAffected_record(ticketEdited.getAffected_record());
+        audit_ticketSelected.setDetails(ticketEdited.getDetails());
+        audit_ticketSelected.setDate(ticketEdited.getDate());
+        audit_ticketSelected.setIp(ticketEdited.getIp());
+        audit_ticketSelected.setAudit_User(ticketEdited.getAudit_User());
+        audit_ticketSelected.setAudit_Desc(ticketEdited.getAudit_Desc());
         audit_ticketService.saveAudit_ticket(audit_ticketSelected);
         return new ResponseEntity<>(audit_ticketSelected, HttpStatus.OK);
     }

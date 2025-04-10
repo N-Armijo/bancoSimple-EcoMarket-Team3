@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/regions")
+@RequestMapping("/regions")
 public class RegionRestController {
     
     private final RegionServiceImpl regionService;
 
 
-    @GetMapping("/Region/{id}")
+    @GetMapping("/region/{id}")
     public Region getRegion(@PathVariable Long id) {
         return regionService.findById(id);
     }
@@ -28,13 +28,14 @@ public class RegionRestController {
         return ResponseEntity.ok(regionService.findAllRegion());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Region> addRegion(@RequestBody Region region){
         return new ResponseEntity<>(regionService.saveRegion(region), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteRegion(@PathVariable Long id){
+    public ResponseEntity<?> deleteRegion(@PathVariable Long id) {
+        regionService.deleteRegionById(id);
         return new ResponseEntity<>("The Region was deleted",HttpStatus.OK);
     }
 

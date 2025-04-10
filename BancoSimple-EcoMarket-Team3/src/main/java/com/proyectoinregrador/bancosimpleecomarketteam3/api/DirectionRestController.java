@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/directions")
+@RequestMapping("/directions")
 public class DirectionRestController {
     private final DirectionServiceImpl directionService;
 
-    @GetMapping("/Direction/{id}")
+    @GetMapping("/direction/{id}")
     public Direction getDirection(@PathVariable Long id) {
         return directionService.findById(id);
     }
@@ -26,13 +26,14 @@ public class DirectionRestController {
         return ResponseEntity.ok(directionService.findAllDirection());
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/new")
     public ResponseEntity<Direction> addDirection(@RequestBody Direction direction){
         return new ResponseEntity<>(directionService.saveDirection(direction), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteDirection(@PathVariable Long id){
+        directionService.deleteDirectionById(id);
         return new ResponseEntity<>("The Direction was deleted",HttpStatus.OK);
     }
 
