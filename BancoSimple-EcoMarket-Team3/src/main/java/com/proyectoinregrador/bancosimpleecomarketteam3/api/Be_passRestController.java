@@ -23,17 +23,17 @@ public class Be_passRestController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Be_pass>> findAllBePasses(){
-        return ResponseEntity.ok(bePassService.findAllBePasses());
+        return ResponseEntity.ok(bePassService.findAllBe_pass());
     }
 
     @PostMapping("/nuevo")
     public ResponseEntity<Be_pass> saveBePass(@RequestBody Be_pass newPass){
-        return new ResponseEntity<>(bePassService.saveBePass(newPass), HttpStatus.CREATED);
+        return new ResponseEntity<>(bePassService.saveBe_pass(newPass), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteBePass(@PathVariable Long id){
-        bePassService.deleteBePassById(id);
+        bePassService.deleteBe_passById(id);
         return new ResponseEntity<>("The BE Pass was deleted", HttpStatus.OK);
     }
 
@@ -42,6 +42,6 @@ public class Be_passRestController {
         Be_pass selectedPass = bePassService.findById(id);
         selectedPass.setPassword(editedPass.getPassword());
         selectedPass.setPass_Account(editedPass.getPass_Account());
-        return new ResponseEntity<>(bePassService.saveBePass(selectedPass), HttpStatus.OK);
+        return new ResponseEntity<>(bePassService.saveBe_pass(selectedPass), HttpStatus.OK);
     }
 }

@@ -1,11 +1,13 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jdk.jfr.Description;
 import lombok.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -26,8 +28,9 @@ public class Transaction {
     @Column(name = "type", nullable = false)
     private String type;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "date", nullable = false)
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "description", nullable = false)
     private String description;

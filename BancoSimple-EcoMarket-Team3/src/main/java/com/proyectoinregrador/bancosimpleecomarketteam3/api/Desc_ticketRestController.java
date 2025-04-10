@@ -23,17 +23,17 @@ public class Desc_ticketRestController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Desc_ticket>> findAllDescTickets() {
-        return ResponseEntity.ok(desc_ticketService.findAllDescTickets());
+        return ResponseEntity.ok(desc_ticketService.findAllDesc_ticket());
     }
 
     @PostMapping("/nuevo")
     public ResponseEntity<Desc_ticket> saveDescTicket(@RequestBody Desc_ticket newDescTicket) {
-        return new ResponseEntity<>(desc_ticketService.saveDescTicket(newDescTicket), HttpStatus.CREATED);
+        return new ResponseEntity<>(desc_ticketService.saveDesc_ticket(newDescTicket), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteDescTicket(@PathVariable Long id) {
-        desc_ticketService.deleteDescTicketById(id);
+        desc_ticketService.deleteDesc_ticketById(id);
         return new ResponseEntity<>("The ticket was deleted", HttpStatus.OK);
     }
 
@@ -43,6 +43,6 @@ public class Desc_ticketRestController {
         selectedDescTicket.setName(editedDescTicket.getName());
         selectedDescTicket.setDescription(editedDescTicket.getDescription());
         selectedDescTicket.setTable_reference(editedDescTicket.getTable_reference());
-        return new ResponseEntity<>(desc_ticketService.saveDescTicket(selectedDescTicket), HttpStatus.OK);
+        return new ResponseEntity<>(desc_ticketService.saveDesc_ticket(selectedDescTicket), HttpStatus.OK);
     }
 }

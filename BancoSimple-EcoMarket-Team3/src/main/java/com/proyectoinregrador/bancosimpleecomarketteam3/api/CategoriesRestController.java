@@ -28,12 +28,12 @@ public class CategoriesRestController {
 
     @PostMapping("/nuevo")
     public ResponseEntity<Categories> saveCategory(@RequestBody Categories newCategory) {
-        return new ResponseEntity<>(categoriesService.saveCategory(newCategory), HttpStatus.CREATED);
+        return new ResponseEntity<>(categoriesService.saveCategories(newCategory), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
-        categoriesService.deleteCategoryById(id);
+        categoriesService.deleteCategoriesById(id);
         return new ResponseEntity<>("The category was deleted", HttpStatus.OK);
     }
 
@@ -42,6 +42,6 @@ public class CategoriesRestController {
         Categories selectedCategory = categoriesService.findById(id);
         selectedCategory.setNombre(editedCategory.getNombre());
         selectedCategory.setDescription(editedCategory.getDescription());
-        return new ResponseEntity<>(categoriesService.saveCategory(selectedCategory), HttpStatus.OK);
+        return new ResponseEntity<>(categoriesService.saveCategories(selectedCategory), HttpStatus.OK);
     }
 }

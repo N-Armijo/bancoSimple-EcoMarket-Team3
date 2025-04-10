@@ -1,8 +1,10 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,8 +22,9 @@ public class Order_product {
     @Column(name = "direction_alias", nullable = false)
     private String direction_alias;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "dateP", nullable = false)
-    private Date dateP;
+    private LocalDate dateP;
 
     @Column(name = "total", nullable = false)
     private Integer total;

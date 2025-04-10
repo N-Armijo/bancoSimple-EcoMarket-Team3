@@ -1,8 +1,10 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -32,8 +34,9 @@ public class Direction {
     @Column(name = "home", nullable = false)
     private Boolean home;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "creation_date", nullable = false)
-    private Date creation_date;
+    private LocalDate creation_date;
 
     @ManyToOne
     @JoinColumn(name = "direction_user", nullable = false)

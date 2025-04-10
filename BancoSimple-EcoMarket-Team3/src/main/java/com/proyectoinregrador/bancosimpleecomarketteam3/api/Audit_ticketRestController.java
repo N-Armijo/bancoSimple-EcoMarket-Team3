@@ -19,7 +19,6 @@ public class Audit_ticketRestController {
 
     @GetMapping("/ticket/{id}")
     public Audit_ticket findById(@PathVariable Long id){
-
         return audit_ticketService.findById(id);
     }
 

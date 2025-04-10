@@ -23,7 +23,7 @@ public class CommuneRestController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Commune>> findAllCommunes() {
-        return ResponseEntity.ok(communeService.findAllCommunes());
+        return ResponseEntity.ok(communeService.findAllCommune());
     }
 
     @PostMapping("/nuevo")

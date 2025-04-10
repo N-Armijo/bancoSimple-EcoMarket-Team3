@@ -23,7 +23,7 @@ public class CountryRestController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Country>> findAllCountries() {
-        return ResponseEntity.ok(countryService.findAllCountries());
+        return ResponseEntity.ok(countryService.findAllCountry());
     }
 
     @PostMapping("/nuevo")

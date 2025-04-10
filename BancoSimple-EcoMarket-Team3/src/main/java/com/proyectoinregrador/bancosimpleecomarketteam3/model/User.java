@@ -1,7 +1,9 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,11 +28,13 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "birthday", nullable = false)
-    private Date birthday;
+    private LocalDate birthday;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "registration_date", nullable = false, unique = true)
-    private Date registration_date;
+    private LocalDate registration_date;
 
     @Column(name = "phone_number", nullable = false, unique = true)
     private String phone_number;

@@ -1,6 +1,8 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.api;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Bank_account;
+import com.proyectoinregrador.bancosimpleecomarketteam3.repository.Bank_accountRepository;
+import com.proyectoinregrador.bancosimpleecomarketteam3.service.Bank_accountService;
 import com.proyectoinregrador.bancosimpleecomarketteam3.service.Bank_accountServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,17 +25,17 @@ public class Bank_accountRestController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Bank_account>> findAllAccounts(){
-        return ResponseEntity.ok(bankAccountService.findAllBankAccounts());
+        return ResponseEntity.ok(bankAccountService.findAllBank_account());
     }
 
     @PostMapping("/nuevo")
     public ResponseEntity<Bank_account> saveAccount(@RequestBody Bank_account newAccount){
-        return new ResponseEntity<>(bankAccountService.saveBankAccount(newAccount), HttpStatus.CREATED);
+        return new ResponseEntity<>(bankAccountService.saveBank_account(newAccount), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteAccount(@PathVariable Long id){
-        bankAccountService.deleteBankAccountById(id);
+        bankAccountService.deleteBank_accountById(id);
         return new ResponseEntity<>("The Bank Account was deleted", HttpStatus.OK);
     }
 
@@ -43,6 +45,6 @@ public class Bank_accountRestController {
         selectedAccount.setAccount_number(editedAccount.getAccount_number());
         selectedAccount.setBalance(editedAccount.getBalance());
         selectedAccount.setBank_User(editedAccount.getBank_User());
-        return new ResponseEntity<>(bankAccountService.saveBankAccount(selectedAccount), HttpStatus.OK);
+        return new ResponseEntity<>(bankAccountService.saveBank_account(selectedAccount), HttpStatus.OK);
     }
 }

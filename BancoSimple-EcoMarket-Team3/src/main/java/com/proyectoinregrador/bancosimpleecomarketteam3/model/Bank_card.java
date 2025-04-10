@@ -1,11 +1,13 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jdk.jfr.Description;
 import lombok.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -23,11 +25,13 @@ public class Bank_card {
     @Column(name = "card_number", nullable = false, unique = true)
     private Integer card_number;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "expiration_date", nullable = false)
-    private Date expiration_date;
+    private LocalDate expiration_date;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column(name = "creation_date", nullable = false)
-    private Date creation_date;
+    private LocalDate creation_date;
 
     @Column(name = "secret_number", nullable = false)
     private Integer secret_number;

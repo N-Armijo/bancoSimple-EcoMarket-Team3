@@ -23,17 +23,17 @@ public class Bank_cardRestController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Bank_card>> findAllBankCards(){
-        return ResponseEntity.ok(bankCardService.findAllBankCards());
+        return ResponseEntity.ok(bankCardService.findAllBank_card());
     }
 
     @PostMapping("/nuevo")
     public ResponseEntity<Bank_card> saveBankCard(@RequestBody Bank_card newCard){
-        return new ResponseEntity<>(bankCardService.saveBankCard(newCard), HttpStatus.CREATED);
+        return new ResponseEntity<>(bankCardService.saveBank_card(newCard), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteBankCard(@PathVariable Long id){
-        bankCardService.deleteBankCardById(id);
+        bankCardService.deleteBank_cardById(id);
         return new ResponseEntity<>("The Bank Card was deleted", HttpStatus.OK);
     }
 
@@ -45,6 +45,6 @@ public class Bank_cardRestController {
         selectedCard.setCreation_date(editedCard.getCreation_date());
         selectedCard.setSecret_number(editedCard.getSecret_number());
         selectedCard.setCard_Account(editedCard.getCard_Account());
-        return new ResponseEntity<>(bankCardService.saveBankCard(selectedCard), HttpStatus.OK);
+        return new ResponseEntity<>(bankCardService.saveBank_card(selectedCard), HttpStatus.OK);
     }
 }
