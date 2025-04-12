@@ -1,6 +1,5 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
-import com.proyectoinregrador.bancosimpleecomarketteam3.model.Audit_ticket;
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Be_pass;
 import com.proyectoinregrador.bancosimpleecomarketteam3.repository.Be_passRepository;
 import jakarta.transaction.Transactional;

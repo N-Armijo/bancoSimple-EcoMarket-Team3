@@ -1,7 +1,6 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Commune;
-import com.proyectoinregrador.bancosimpleecomarketteam3.model.Commune;
 import com.proyectoinregrador.bancosimpleecomarketteam3.repository.CommuneRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

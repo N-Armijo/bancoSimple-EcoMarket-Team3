@@ -1,6 +1,6 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
-import com.proyectoinregrador.bancosimpleecomarketteam3.model.Rol;
+import com.proyectoinregrador.bancosimpleecomarketteam3.model.ERol;
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Rol;
 import com.proyectoinregrador.bancosimpleecomarketteam3.repository.RolRepository;
 import jakarta.transaction.Transactional;
@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -15,6 +16,10 @@ import java.util.List;
 public class RolServiceImpl implements RolService {
 
     private final RolRepository rolRepository;
+
+    public Optional<Rol> findRolByEmail(ERol email){
+        return rolRepository.findByEmail(email);
+    }
 
     @Override
     public Rol findById(Long id) {

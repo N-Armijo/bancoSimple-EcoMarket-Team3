@@ -1,7 +1,6 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Desc_ticket;
-import com.proyectoinregrador.bancosimpleecomarketteam3.model.Desc_ticket;
 import com.proyectoinregrador.bancosimpleecomarketteam3.repository.Desc_ticketRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

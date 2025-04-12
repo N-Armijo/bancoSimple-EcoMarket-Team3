@@ -1,7 +1,6 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.api;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Audit_ticket;
-import com.proyectoinregrador.bancosimpleecomarketteam3.model.Product;
 import com.proyectoinregrador.bancosimpleecomarketteam3.service.Audit_ticketServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

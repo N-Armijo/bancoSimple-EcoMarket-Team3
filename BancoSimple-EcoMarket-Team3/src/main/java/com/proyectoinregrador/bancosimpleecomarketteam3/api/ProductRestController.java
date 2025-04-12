@@ -1,7 +1,6 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.api;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Product;
-import com.proyectoinregrador.bancosimpleecomarketteam3.service.ProductService;
 import com.proyectoinregrador.bancosimpleecomarketteam3.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

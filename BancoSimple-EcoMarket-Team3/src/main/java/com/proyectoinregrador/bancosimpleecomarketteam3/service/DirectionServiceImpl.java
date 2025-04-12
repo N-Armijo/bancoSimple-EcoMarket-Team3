@@ -1,7 +1,6 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Direction;
-import com.proyectoinregrador.bancosimpleecomarketteam3.model.Direction;
 import com.proyectoinregrador.bancosimpleecomarketteam3.repository.DirectionRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
