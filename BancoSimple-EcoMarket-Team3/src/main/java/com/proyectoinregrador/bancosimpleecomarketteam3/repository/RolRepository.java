@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface RolRepository extends JpaRepository<Rol, Long> {
-    Optional<Rol> findByEmail(ERol email);
+    Optional<Rol> findByName(ERol name);
 
 }

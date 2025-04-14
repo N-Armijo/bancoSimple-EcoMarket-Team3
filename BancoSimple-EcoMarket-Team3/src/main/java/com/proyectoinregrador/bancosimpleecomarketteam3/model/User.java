@@ -13,7 +13,9 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Builder
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,19 +29,21 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ERol userRole;
+
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    @Column(name = "registration_date", nullable = false, unique = true)
+    @Column(name = "registration_date", nullable = true, unique = true)
     private LocalDate registration_date;
 
-    @Column(name = "phone_number", nullable = false, unique = true)
+    @Column(name = "phone_number", nullable = true, unique = true)
     private String phone_number;
 
     @ManyToOne
-    @JoinColumn(name = "user_country", nullable = false)
+    @JoinColumn(name = "user_country", nullable = true)
     private Country user_Country;
 
     @ManyToMany
@@ -48,7 +52,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id")
     )
-    private List<Rol> userRole;
+    private List<Rol> userRoles;
 
 
 }

@@ -28,8 +28,8 @@ public class UserDetailsImpl implements UserDetails { //Implementación de inter
     private Collection<? extends GrantedAuthority> authorities;
 
     public static UserDetailsImpl build(User user) {
-        List<GrantedAuthority> authorities = user.getUserRole().stream() //GrantedAuthority Permiso o Rol al usuario autenticado y Stream convierte la lista en un String
-                .map(rol -> new SimpleGrantedAuthority(rol.getName()))
+        List<GrantedAuthority> authorities = user.getUserRoles().stream() //GrantedAuthority Permiso o Rol al usuario autenticado y Stream convierte la lista en un String
+                .map(rol -> new SimpleGrantedAuthority(rol.getName().name()))
                 .collect(Collectors.toList());
         return new UserDetailsImpl(
                 user.getId(),

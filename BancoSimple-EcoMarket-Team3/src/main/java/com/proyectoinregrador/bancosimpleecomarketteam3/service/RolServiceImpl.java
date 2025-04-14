@@ -17,8 +17,8 @@ public class RolServiceImpl implements RolService {
 
     private final RolRepository rolRepository;
 
-    public Optional<Rol> findRolByEmail(ERol email){
-        return rolRepository.findByEmail(email);
+    public Optional<Rol> findRolByEmail(ERol name){
+        return rolRepository.findByName(name);
     }
 
     @Override
@@ -26,6 +26,11 @@ public class RolServiceImpl implements RolService {
         return rolRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Rol not found")
         );
+    }
+
+    @Override
+    public Optional<Rol> findByName(ERol name) {
+        return rolRepository.findByName(name);
     }
 
     @Override
