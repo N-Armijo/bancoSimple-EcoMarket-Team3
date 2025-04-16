@@ -31,6 +31,5 @@ public class Bank_accountTest {
                 .hasFieldOrPropertyWithValue("balance", BigDecimal.valueOf(750000))
                 .hasFieldOrPropertyWithValue("bank_User", bank_user)
                 .hasFieldOrPropertyWithValue("id",1L);
-
     }
 }

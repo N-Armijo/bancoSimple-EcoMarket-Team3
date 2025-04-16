@@ -58,6 +58,7 @@ public class WebSecurityConfig {
                             .requestMatchers("/login").permitAll()
                             .requestMatchers("/api/auth/**").permitAll()
                             .requestMatchers("/api/producto/lista").hasRole("ADMIN")
+                                .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
                             .anyRequest().authenticated()
                         )
                 .formLogin(login -> login
