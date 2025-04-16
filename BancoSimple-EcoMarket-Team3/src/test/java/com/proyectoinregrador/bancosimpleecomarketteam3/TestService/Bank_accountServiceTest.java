@@ -51,12 +51,5 @@ public class Bank_accountServiceTest {
         assertEquals(bank_account.getBalance(), bank_account2.getBalance());
         assertEquals(bank_account.getBank_User().getId(), bank_account2.getBank_User().getId());
 
-
-
-
     }
-
-
-
-
 }

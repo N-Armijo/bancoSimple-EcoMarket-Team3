@@ -64,116 +64,11 @@ public class Audit_ticketServiceTest {
         assertEquals(audit_ticket.getId(), reult.getId());
         assertEquals(audit_ticket.getAction(), reult.getAction());
 
-
-
-//        when(audit_ticketRepository.save(audit_ticket)).thenReturn(audit_ticket);
-//
-//        Audit_ticket audit = audit_ticketService.saveAudit_ticket(audit_ticket);
-//
-//        assertEquals(audit_ticket.getId(), audit.getId());
-//        assertEquals(audit_ticket.getAction(), audit.getAction());
+        System.out.println(audit_ticket);
+        System.out.println(audit_ticket2);
 
     }
 }
-
-
-
-
-
-
-
-
-//public class UserService {
-//    private final UserRepository userRepository;
-//
-//    public UserService(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
-//
-//    public User createUser(User user) {
-//        return userRepository.save(user);
-//    }
-//}
-//
-//
-//class UserServiceTest {
-//
-//    private UserRepository userRepository;
-//    private UserService userService;
-//
-//    @BeforeEach
-//    void setUp() {
-//        userRepository = Mockito.mock(UserRepository.class);
-//        userService = new UserService(userRepository);
-//    }
-//
-//    @Test
-//    void testCreateUser() {
-//        User user = new User("John", "john@example.com");
-//
-//        Mockito.when(userRepository.save(user)).thenReturn(user);
-//
-//        User result = userService.createUser(user);
-//
-//        assertEquals("John", result.getName());
-//        assertEquals("john@example.com", result.getEmail());
-//    }
-//}
-//
-//
-//
-//@ExtendWith(MockitoExtension.class)
-//public class UserServiceTest {
-//
-//    @Mock
-//    private UserRepository userRepository;
-//
-//    @InjectMocks
-//    private UserService userService;
-//
-//    @Test
-//    void testRegisterUserSuccess() {
-//        User user = new User();
-//        user.setName("Ana");
-//        user.setEmail("ana@example.com");
-//
-//        // Simulamos que no existe un usuario con ese correo
-//        Mockito.when(userRepository.findByEmail("ana@example.com"))
-//                .thenReturn(Optional.empty());
-//
-//        // Simulamos guardar el usuario
-//        Mockito.when(userRepository.save(user)).thenReturn(user);
-//
-//        User savedUser = userService.registerUser(user);
-//
-//        assertEquals("Ana", savedUser.getName());
-//        assertEquals("ana@example.com", savedUser.getEmail());
-//    }
-//
-//    @Test
-//    void testRegisterUserWithExistingEmailThrowsException() {
-//        User existingUser = new User();
-//        existingUser.setEmail("ana@example.com");
-//
-//        Mockito.when(userRepository.findByEmail("ana@example.com"))
-//                .thenReturn(Optional.of(existingUser));
-//
-//        User newUser = new User();
-//        newUser.setEmail("ana@example.com");
-//
-//        assertThrows(IllegalArgumentException.class, () -> {
-//            userService.registerUser(newUser);
-//        });
-//    }
-//}
-
-
-
-
-
-
-
-
 
 
 
