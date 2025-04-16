@@ -52,6 +52,36 @@ public class Audit_ticketServiceTest {
         user.setId(1L);
         audit_ticket.setAudit_User(user);
 
+        when(audit_ticketRepository.save(audit_ticket)).thenReturn(audit_ticket);
+
+        Audit_ticket audit = audit_ticketService.saveAudit_ticket(audit_ticket);
+
+        assertEquals(audit_ticket.getId(), audit.getId());
+        assertEquals(audit_ticket.getAction(), audit.getAction());
+
+    }
+
+
+
+    @Test
+    @DisplayName("retornaAudit_ticketAlBuscarPorID")
+    void retornaAudit_ticketAlBuscarPorID(){
+
+        Audit_ticket audit_ticket = new Audit_ticket();
+        audit_ticket.setId(1L);
+        audit_ticket.setAction("CREATE");
+        audit_ticket.setAffected_record(1);
+        LocalDate now = LocalDate.now();
+        audit_ticket.setDate(now);
+        audit_ticket.setDetails("some details");
+        audit_ticket.setIp("192.168.1.1");
+        Desc_ticket desc = new Desc_ticket();;
+        desc.setId(1L);
+        audit_ticket.setAudit_Desc(desc);
+        User user = new User();
+        user.setId(1L);
+        audit_ticket.setAudit_User(user);
+
 
         Audit_ticket audit_ticket2 = new Audit_ticket();
         audit_ticket2.setId(1L);
@@ -64,14 +94,6 @@ public class Audit_ticketServiceTest {
         assertEquals(audit_ticket.getId(), reult.getId());
         assertEquals(audit_ticket.getAction(), reult.getAction());
 
-
-
-//        when(audit_ticketRepository.save(audit_ticket)).thenReturn(audit_ticket);
-//
-//        Audit_ticket audit = audit_ticketService.saveAudit_ticket(audit_ticket);
-//
-//        assertEquals(audit_ticket.getId(), audit.getId());
-//        assertEquals(audit_ticket.getAction(), audit.getAction());
 
     }
 }
