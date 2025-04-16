@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface Audit_ticketRepository extends JpaRepository<Audit_ticket, Long> {
 
+    Audit_ticket findById(long id);
+
+
 }

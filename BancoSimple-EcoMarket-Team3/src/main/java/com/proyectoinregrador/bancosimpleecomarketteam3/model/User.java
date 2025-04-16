@@ -1,5 +1,6 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,7 +33,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ERol userRole;
-
+    @Schema(example = "2000-04-04")
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
