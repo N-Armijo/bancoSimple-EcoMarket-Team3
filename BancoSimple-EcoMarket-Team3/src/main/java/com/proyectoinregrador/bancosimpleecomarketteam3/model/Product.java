@@ -29,6 +29,9 @@ public class Product {
     @Column(name = "stock", nullable = false)
     private Integer stock;
 
+    @Column(name = "img", nullable = false)
+    private String img_Url;
+
     @ManyToOne
     @JoinColumn(name = "product_user", nullable = false)
     private User product_User;
@@ -39,7 +42,7 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "categories_id")
     )
-    private List<Categories> productCategories;
+    private List<Categories> product_Categories;
 
 
 }

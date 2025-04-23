@@ -29,7 +29,7 @@ public class ProductTest {
         product.setPrice(10000);
         product.setStock(30);
         product.setProduct_User(user);
-        product.setProductCategories(List.of(category));
+        product.setProduct_Categories(List.of(category));
 
         assertThat(product)
                 .hasFieldOrPropertyWithValue("id", 3L)
