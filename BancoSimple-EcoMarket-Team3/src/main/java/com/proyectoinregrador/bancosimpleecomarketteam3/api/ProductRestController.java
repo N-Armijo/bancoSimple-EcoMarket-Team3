@@ -47,26 +47,23 @@ public class ProductRestController {
     })
 
     @PostMapping(value = "/new", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<ProductDTO> saveProduct(@io.swagger.v3.oas.annotations.parameters.RequestBody(
+    public ResponseEntity<ProductDTO> saveProduct(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = "DTO de Producto que será creado",
             required = true,
             content = @Content(schema = @Schema(implementation = ProductDTO.class))
     )
     @RequestPart("product") ProductDTO newProduct,
     @RequestPart("img")MultipartFile img) throws IOException{
-
         String imageUrl = null;
         if (!img.isEmpty()) {
-            imageUrl = storageService.uploadImagenProducto(newProduct.getId() ,img);
+            imageUrl = storageService.uploadImagenProducto(img);
     }
-
     Product product = toModel(newProduct);
 
     product.setImg_Url(imageUrl);
     newProduct.setImagen(imageUrl);
-
     productService.saveProduct(product);
-
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
@@ -92,18 +89,17 @@ public class ProductRestController {
         User user = new User();
         Categories categories = new Categories();
         List<Long> categoriesList = nuevoProducto.getCategories_id();
-        List<Categories> newList = null;
+        List<Categories> newList = new java.util.ArrayList<>();
         for (Long i: categoriesList){
             categories.setId(i);
             newList.add(categories);
         }
-
         user.setId(nuevoProducto.getUser_id());
         producto.setStock(nuevoProducto.getStock());
         producto.setPrice(nuevoProducto.getPrice());
-        producto.setProduct_name(producto.getProduct_name());
+        producto.setProduct_name(nuevoProducto.getProduct_name());
         producto.setDescription(nuevoProducto.getDescription());
-        producto.setId(nuevoProducto.getId());
+
         producto.setProduct_User(user);
         producto.setProduct_Categories(newList);
         return producto;

@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +57,7 @@ public class AuthRestController {
 
         String jwtToken = jwtUtils.generateJwtToken(userDetails);
 
-        return new ResponseEntity<>(new JwtResponse(jwtToken, userDetails.getUsername(),userDetails.getEmail()), HttpStatus.OK);
+        return new ResponseEntity<>(new JwtResponse(jwtToken, userDetails.getUsername(),userDetails.getEmail(), (List<GrantedAuthority>) userDetails.getAuthorities()), HttpStatus.OK);
     }
 
     @PostMapping("/registro")
@@ -86,6 +87,11 @@ public class AuthRestController {
                                 .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado"));
                         roles.add(rolVendedor);
                         break;
+                    case "ADMIN":
+                        Rol rolAdmin = rolService.findByName(ERol.ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado"));
+                        roles.add(rolAdmin);
+                        break;
 
                     default:
                         Rol rolUsuario = rolService.findByName(ERol.COMPRADOR)
@@ -111,6 +117,8 @@ public class AuthRestController {
         private String username;
 
         private String email;
+
+        private List<GrantedAuthority> roles;
     }
 
 }

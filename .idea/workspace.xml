@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b525d4cc-158e-45bb-be6f-903af2b1347d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BancoSimple-EcoMarket-Team3/src/main/java/com/proyectoinregrador/bancosimpleecomarketteam3/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/BancoSimple-EcoMarket-Team3/src/main/java/com/proyectoinregrador/bancosimpleecomarketteam3/model/Product.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +29,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/AppPortafolio/Market y Banco/bancoSimple-EcoMarket-Team3/BancoSimple-EcoMarket-Team3",
+    "last_opened_file_path": "E:/AppBanco2/bancoSimple-EcoMarket-Team3",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -37,8 +37,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
       </set>
     </attachedChunks>
   </component>
@@ -54,6 +54,7 @@
       <workItem from="1744058177787" duration="30000" />
       <workItem from="1744121120167" duration="37000" />
       <workItem from="1744121167579" duration="12000" />
+      <workItem from="1745447636520" duration="24000" />
     </task>
     <servers />
   </component>

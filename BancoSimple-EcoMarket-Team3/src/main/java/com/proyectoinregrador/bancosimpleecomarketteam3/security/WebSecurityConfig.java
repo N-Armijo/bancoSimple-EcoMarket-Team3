@@ -57,8 +57,10 @@ public class WebSecurityConfig {
                         .authorizeHttpRequests(auth -> auth
                             .requestMatchers("/login").permitAll()
                             .requestMatchers("/api/auth/**").permitAll()
-                            .requestMatchers("/api/producto/lista").hasRole("ADMIN")
-                                .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
+                            .requestMatchers("/products/list").permitAll()
+                            .requestMatchers("/products/new").hasAuthority("ADMIN")
+                            .requestMatchers("/users/**").hasAuthority("ADMIN")
+                            .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
                             .anyRequest().authenticated()
                         )
                 .formLogin(login -> login

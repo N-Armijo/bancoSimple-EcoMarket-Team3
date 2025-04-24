@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -37,6 +39,7 @@ public class User {
     @Column(name = "birthday", nullable = false)
     private LocalDate birthday;
 
+    @CreationTimestamp
     @Column(name = "registration_date", nullable = true, unique = true)
     private LocalDate registration_date;
 

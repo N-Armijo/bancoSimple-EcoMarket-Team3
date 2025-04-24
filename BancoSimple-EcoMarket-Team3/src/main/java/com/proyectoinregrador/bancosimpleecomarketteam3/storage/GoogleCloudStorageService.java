@@ -18,11 +18,13 @@ public class GoogleCloudStorageService {
 
     private String bucketName = "ynpcet-backend";
 
-    private String keyPath = "C:\\Users\\Shlederick\\Downloads\\Generation\\YNPCET-KEY.json";
+    private String keyPath = "src/main/java/com/proyectoinregrador/bancosimpleecomarketteam3/storage/YNPCET-KEY.json";
 
     private final Storage storage;
     {
+
         try {
+            System.out.println( new FileInputStream(keyPath).toString());
 
         storage = StorageOptions.newBuilder().setCredentials(ServiceAccountCredentials.fromStream(new FileInputStream(keyPath))).build().getService();
         } catch (IOException e) {
@@ -30,14 +32,14 @@ public class GoogleCloudStorageService {
         }
     }
 
-    public String uploadImagenProducto(Long productoId, MultipartFile archivoImagen) throws IOException {
+    public String uploadImagenProducto(MultipartFile archivoImagen) throws IOException {
 
-        if (!archivoImagen.getContentType().startsWith("imagen/")) {
+        if (!archivoImagen.getContentType().startsWith("image/")) {
             throw new IllegalArgumentException("Solo se permiten archivos de imagen");
         }
 
         String extension = FilenameUtils.getExtension(archivoImagen.getOriginalFilename());
-        String nombreArchivo = "productos/" + productoId + "/" + UUID.randomUUID() + "." + extension;
+        String nombreArchivo = "productos/" + UUID.randomUUID() + "." + extension;
 
         BlobId blobId = BlobId.of(bucketName, nombreArchivo);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
