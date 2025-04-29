@@ -58,8 +58,11 @@ public class WebSecurityConfig {
                             .requestMatchers("/api/auth/**").permitAll()
                             .requestMatchers("/products/list").permitAll()
                             .requestMatchers("/products/new").hasAuthority("VENDEDOR")
+                                .requestMatchers("/categories/**").permitAll()
+
                             .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
                             .anyRequest().authenticated()
+
                         );
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

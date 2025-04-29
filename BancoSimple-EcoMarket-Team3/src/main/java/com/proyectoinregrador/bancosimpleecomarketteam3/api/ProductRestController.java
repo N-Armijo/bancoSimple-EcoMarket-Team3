@@ -24,6 +24,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/products")
+@CrossOrigin("*")
 public class ProductRestController {
 
     private final ProductServiceImpl productService;

@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/orderproducts")
+@CrossOrigin("*")
 public class Order_productRestController {
     private final Order_productServiceImpl order_productService;
 
