@@ -4,6 +4,8 @@ import { useTheme } from "../../Context/themeContext";//Hook personalizado, que 
 import { Link } from "react-router-dom";
 import ProductCard from "./ProductoCard";
 import { productoService } from "../../service/ProductoService";
+import Juguetes from "../../pages/Juguetes";
+import { categoriaService } from "../../service/CategoriaService";
 
 export default function GridProducto({ categoria }) {
     //Usamos los colores del tema oscuro
@@ -11,19 +13,58 @@ export default function GridProducto({ categoria }) {
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
+    const [categorias, setCategorias] = useState([]);
+
+
 
     //Este objeto permitirá indicar la categoría de productos
-    const categorias = { hombre: "HOMBRE", mujer: "MUJER", ninos: "NINOS" };
+    //const categorias = { electronica: "ELECTRONICA", ropa: "ROPA", hogar: "HOGAR", deportes: "DEPORTES", Juguetes: "JUGUETES" };
+    // useEffect(() => {
+    //     const fetchCategories = async () => {
+    //         try {
+    //             const data = await categoriaService.getAll();
+    //             const categorias1 = data.map((cat) => cat.nombre);
+                
+    //             setCategorias(categorias1);
+    //             console.log("Categorías", categorias1);
+    //         } catch (error) {
+    //             setError(error);
+    //             console.log(error);
+    //         }
+    //     };
+    //     fetchCategories();
+    // }, []);
 
-    //Usamos el useEffect para llamar a axios y al método get()
+    // //Usamos el useEffect para llamar a axios y al método get()
+    // useEffect(() => {
+    //     const fetchProducts = async() => {
+    //         try {
+    //             //Verificamos que traiga una categoría al momento de buscar con axios
+    //             console.log("Categoría recibida del backend ", categoria);
+    //             console.log("Categorías disponibles ", categorias);
+    //             setCargando(true);
+    //             if(!categorias.includes(categoria)) 
+                    
+    //                 throw new Error('Categoría inválida')
+    //                 const data = await productoService.getByCategory(categoria);
+    //                 setProductos(data);
+    //         } catch (error) {
+    //             setError(error);
+    //             console.log(error);
+    //         } finally {
+    //             setCargando(false);
+    //         }
+    //     };
+    //     fetchProducts();
+    // }, [categoria]);
+
+
     useEffect(() => {
-        const fetchProducts = async() => {
+        const fetchData = async() => {
             try {
-                //Verificamos que traiga una categoría al momento de buscar con axios
-                if(!categorias[categoria]) 
-                    throw new Error('Categoría inválida')
-                    const data = await productoService.getByCategory(categorias[categoria]);
-                    setProductos(data);
+                setCargando(true);
+                const data = await productoService.getByCategory(categoria);
+                setProductos(data);
             } catch (error) {
                 setError(error);
                 console.log(error);
@@ -31,7 +72,7 @@ export default function GridProducto({ categoria }) {
                 setCargando(false);
             }
         };
-        fetchProducts();
+        fetchData();
     }, [categoria]);
 
     //Mensaje de carga cuando cambiemos de categoría

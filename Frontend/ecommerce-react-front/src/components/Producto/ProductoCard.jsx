@@ -20,10 +20,10 @@ const ProductCard = ({ producto, colors }) => (
       alignItems: "center",
       justifyContent: "center"
     }}>
-      {producto.imagenUrl ? (
+      {producto.img_Url ? (
         <img 
-          src={producto.imagenUrl} 
-          alt={producto.nombre} 
+          src={producto.img_Url} 
+          alt={producto.product_name} 
           style={{ width: "100%", height: "100%", objectFit: "cover" }} 
         />
       ) : (
@@ -32,10 +32,10 @@ const ProductCard = ({ producto, colors }) => (
     </div>
     
     <h3 style={{ color: colors.text, margin: "0.5rem 0" }}>
-      {producto.nombre || "Producto sin nombre"}
+      {producto.product_name || "Producto sin nombre"}
     </h3>
     <p style={{ color: colors.primary, fontWeight: "bold", margin: "0.5rem 0" }}>
-      ${producto.precio.toLocaleString()}
+      ${producto.price.toLocaleString()}
     </p>
  
     
