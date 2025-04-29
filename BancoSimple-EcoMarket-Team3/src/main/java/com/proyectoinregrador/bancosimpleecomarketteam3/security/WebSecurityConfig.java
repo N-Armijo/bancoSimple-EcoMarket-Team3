@@ -55,19 +55,12 @@ public class WebSecurityConfig {
                         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/login").permitAll()
                             .requestMatchers("/api/auth/**").permitAll()
                             .requestMatchers("/products/list").permitAll()
-                            .requestMatchers("/products/new").hasAuthority("ADMIN")
-                            .requestMatchers("/users/**").hasAuthority("ADMIN")
+                            .requestMatchers("/products/new").hasAuthority("VENDEDOR")
                             .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
                             .anyRequest().authenticated()
-                        )
-                .formLogin(login -> login
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .permitAll());
+                        );
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 

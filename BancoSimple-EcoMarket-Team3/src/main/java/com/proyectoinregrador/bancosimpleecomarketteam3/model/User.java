@@ -40,7 +40,7 @@ public class User {
     private LocalDate birthday;
 
     @CreationTimestamp
-    @Column(name = "registration_date", nullable = true, unique = true)
+    @Column(name = "registration_date", nullable = true)
     private LocalDate registration_date;
 
     @Column(name = "phone_number", nullable = true, unique = true)

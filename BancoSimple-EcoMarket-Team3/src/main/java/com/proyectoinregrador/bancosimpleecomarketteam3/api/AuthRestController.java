@@ -81,8 +81,8 @@ public class AuthRestController {
                 roles.add(rolUsuario);
         } else {
             strRol.forEach(role -> {
-                switch (role) {
-                    case "Vendedor":
+                switch (role.toUpperCase()) {
+                    case "VENDEDOR":
                         Rol rolVendedor = rolService.findByName(ERol.VENDEDOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado"));
                         roles.add(rolVendedor);

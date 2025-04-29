@@ -17,11 +17,16 @@ import java.util.UUID;
 public class GoogleCloudStorageService {
 
     private String bucketName = "ynpcet-backend";
-
-    private String keyPath = "src/main/java/com/proyectoinregrador/bancosimpleecomarketteam3/storage/YNPCET-KEY.json";
+    //Key-Local
+    //private String keyPath = "C:\\Users\\Shlederick\\Downloads\\Generation\\YNPCET-KEY.json";
 
     private final Storage storage;
-    {
+
+    public GoogleCloudStorageService() {
+        this.storage = StorageOptions.getDefaultInstance().getService();
+    }
+    //Inicializar el Servicio de manera local
+    /*{
 
         try {
             System.out.println( new FileInputStream(keyPath).toString());
@@ -30,7 +35,7 @@ public class GoogleCloudStorageService {
         } catch (IOException e) {
         throw new RuntimeException(e);
         }
-    }
+    }*/
 
     public String uploadImagenProducto(MultipartFile archivoImagen) throws IOException {
 
