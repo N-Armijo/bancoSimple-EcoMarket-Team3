@@ -5,9 +5,11 @@ import { ThemeProvider } from './Context/themeContext.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Electrodomesticos from './pages/Electrodomesticos.jsx';
-import Prendas from './pages/Prendas.jsx';
-import Consumibles from './pages/Consumibles.jsx';
+import Electronica from './pages/Electronica.jsx'
+import Ropa from './pages/Ropa.jsx'
+import Hogar from './pages/Hogar.jsx'
+import Deportes from './pages/Deportes.jsx'
+import Juguetes from './pages/Juguetes.jsx'
 
 
 function App() {
@@ -23,9 +25,11 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
-            <Route path="/electrodomesticos" element={<Electrodomesticos />} />
-            <Route path="/prendas" element={<Prendas />} />
-            <Route path="/consumibles" element={<Consumibles />} />
+            <Route path="/electronica" element={<Electronica />} />
+            <Route path="/ropa" element={<Ropa />} />
+            <Route path="/hogar" element={<Hogar />} />
+            <Route path="/deportes" element={<Deportes />} />
+            <Route path="/juguetes" element={<Juguetes />} />
             <Route path="/nosotros" element={<Nosotros />} />
           </Routes>
         </div>

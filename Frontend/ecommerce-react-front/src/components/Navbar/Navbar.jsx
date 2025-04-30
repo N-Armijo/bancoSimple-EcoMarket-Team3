@@ -39,19 +39,29 @@ export default function Navbar() {
       <ul className="nav-menu"
         >
         <Link
-          to={"/electrodomesticos"}
+          to={"/electronica"}
           style={{color:colors.text, textDecoration:"none"}}>
-        <li style={{ color: colors.text }}>Electrodomesticos</li>
+        <li style={{ color: colors.text }}>Electrónica</li>
         </Link>
         <Link
-          to={"/prendas"}
+          to={"/ropa"}
           style={{color:colors.text, textDecoration:"none"}}>
-        <li style={{ color: colors.text }}>Prendas</li>
+        <li style={{ color: colors.text }}>Ropa</li>
         </Link>
         <Link
-          to={"/consumibles"}
+          to={"/hogar"}
           style={{color:colors.text, textDecoration:"none"}}>
-        <li style={{ color: colors.text }}>Consumibles</li>
+        <li style={{ color: colors.text }}>Hogar</li>
+        </Link>
+        <Link
+          to={"/deportes"}
+          style={{color:colors.text, textDecoration:"none"}}>
+        <li style={{ color: colors.text }}>Deportes</li>
+        </Link>
+        <Link
+          to={"/juguetes"}
+          style={{color:colors.text, textDecoration:"none"}}>
+        <li style={{ color: colors.text }}>Juguetes</li>
         </Link>
         
       </ul>

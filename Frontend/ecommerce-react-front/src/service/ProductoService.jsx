@@ -6,7 +6,7 @@ export const productoService = {
     //Método para obtener la lista de productos
     getAll: async () => {
         try {
-            const response = await api.get("/productos/lista");
+            const response = await api.get("/products/list");
             return response.data;
         } catch (error) {
             console.log("Hubo un error al obtener los productos", error);
@@ -17,13 +17,16 @@ export const productoService = {
     getByCategory: async (categoria) => {
     //Hacemos uso del mismo método para obtener todos los productos y hacemos filtrado por acá
         try {
-            const response = await api.get("/productos/lista");
+            const response = await api.get("/products/list");
             console.log("Datos recibidos del backend ", response.data);
             //Usamos función filter para buscar por categoría
-            return response.data.filter(
+            const productosFiltrados = response.data.filter(
+                
                 (producto) =>
-                    producto.categoria && producto.categoria.nombre === categoria.toUpperCase()
-            );
+                    producto.product_Categories && producto.product_Categories.some((cat) => cat.nombre === categoria) 
+            )
+            console.log("Productos filtrados por categoría ", productosFiltrados);
+            return productosFiltrados;
         }
         catch (error) {
             console.log("hubo un error al obtener los productos por categoría ", error);
