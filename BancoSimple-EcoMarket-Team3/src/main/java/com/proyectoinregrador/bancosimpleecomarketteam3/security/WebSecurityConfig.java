@@ -55,13 +55,43 @@ public class WebSecurityConfig {
                         .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/api/auth/**").permitAll()
-                            .requestMatchers("/products/list").permitAll()
-                            .requestMatchers("/products/new").hasAuthority("VENDEDOR")
-                                .requestMatchers("/categories/**").permitAll()
-
-                            .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
-                            .anyRequest().authenticated()
+                                //Login y Registro
+                                .requestMatchers("/api/auth/**").permitAll()
+                                //Categories
+                                .requestMatchers("/categories/**").hasAuthority("ADMIN")
+                                .requestMatchers("/categories/list").permitAll()
+                                //Comuna
+                                .requestMatchers("/comunes/**").hasAuthority("ADMIN")
+                                .requestMatchers("/comunes/list").permitAll()
+                                //Pais
+                                .requestMatchers("/countries/**").hasAuthority("ADMIN")
+                                .requestMatchers("/countries/list").permitAll()
+                                //Detalle del producto
+                                .requestMatchers("/detailorders/**").hasAuthority("ADMIN")
+                                .requestMatchers("/detailorders/new").permitAll()
+                                .requestMatchers("/detailorders/list").permitAll()//Modificar por id usuario
+                                .requestMatchers("/detailorders/detailorder/**").permitAll()//Modificar por id usuario
+                                //Dirección
+                                .requestMatchers("/directions/**").hasAuthority("ADMIN")
+                                .requestMatchers("/directions/list").permitAll()
+                                //Orden Productos
+                                .requestMatchers("/orderproducts/**").hasAuthority("ADMIN")
+                                .requestMatchers("/orderproducts/orderproduct/**").permitAll()//Modificar por id usuario
+                                .requestMatchers("/orderproducts/new").permitAll()
+                                .requestMatchers("/orderproducts/edit").permitAll()//Modificar por id usuario
+                                //Productos
+                                .requestMatchers("/products/**").hasAuthority("ADMIN")
+                                .requestMatchers("/products/**").hasAuthority("VENDEDOR")//Modificar por id usuario
+                                .requestMatchers("/products/list").permitAll()
+                                .requestMatchers("/products/product/**").permitAll()
+                                //Region
+                                .requestMatchers("/regions/**").hasAuthority("ADMIN")
+                                .requestMatchers("/regions/list").permitAll()
+                                //Usuarios
+                                .requestMatchers("/users/**").hasAuthority("ADMIN")
+                                .requestMatchers("/users/edit").permitAll()//Modificar por id usuario
+                                .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
+                                .anyRequest().authenticated()
 
                         );
         http.authenticationProvider(authenticationProvider());

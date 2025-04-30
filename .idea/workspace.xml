@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b525d4cc-158e-45bb-be6f-903af2b1347d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/BancoSimple-EcoMarket-Team3/src/main/java/com/proyectoinregrador/bancosimpleecomarketteam3/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/BancoSimple-EcoMarket-Team3/src/main/java/com/proyectoinregrador/bancosimpleecomarketteam3/model/Product.java" afterDir="false" />
-    </list>
+    <list default="true" id="b525d4cc-158e-45bb-be6f-903af2b1347d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,8 +30,13 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/AppBanco2/bancoSimple-EcoMarket-Team3",
+    "last_opened_file_path": "C:/Users/Shlederick/OneDrive/Escritorio/Carpeta Gits/Proyecto Integrador/bancoSimple-EcoMarket-Team3/BancoSimple-EcoMarket-Team3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "af73934a0efcb3c9250bf998d3ecc873",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -55,6 +61,7 @@
       <workItem from="1744121120167" duration="37000" />
       <workItem from="1744121167579" duration="12000" />
       <workItem from="1745447636520" duration="24000" />
+      <workItem from="1745952734413" duration="345000" />
     </task>
     <servers />
   </component>
