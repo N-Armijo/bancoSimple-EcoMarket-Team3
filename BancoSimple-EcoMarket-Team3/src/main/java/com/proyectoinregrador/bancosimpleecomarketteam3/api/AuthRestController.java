@@ -77,10 +77,10 @@ public class AuthRestController {
 
         // Campos opcionales
         if (solicitudRegistro.getPhone_number() != null && !solicitudRegistro.getPhone_number().isEmpty()) {
-            if (userService.existUserByPhoneNumber(solicitudRegistro.getPhone_number())) {
+            if (userService.existUserByphoneNumber(solicitudRegistro.getPhone_number())) {
                 return ResponseEntity.badRequest().body("Error: el número de teléfono ya está en uso.");
             }
-            user.setPhone_number(solicitudRegistro.getPhone_number());
+            user.setPhoneNumber(solicitudRegistro.getPhone_number());
         }
 
         if (solicitudRegistro.getBirthday() != null) {

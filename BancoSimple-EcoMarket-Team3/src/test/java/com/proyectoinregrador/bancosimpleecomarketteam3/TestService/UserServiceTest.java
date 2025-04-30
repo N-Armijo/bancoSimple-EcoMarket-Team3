@@ -47,7 +47,7 @@ public class UserServiceTest {
         LocalDate now = LocalDate.now();
         user.setBirthday(LocalDate.of(2000,04,04));
         user.setRegistration_date(now);
-        user.setPhone_number("+56 933420943");
+        user.setPhoneNumber("+56 933420943");
         user.setUser_Country(country);
 
         User user2 = new User();

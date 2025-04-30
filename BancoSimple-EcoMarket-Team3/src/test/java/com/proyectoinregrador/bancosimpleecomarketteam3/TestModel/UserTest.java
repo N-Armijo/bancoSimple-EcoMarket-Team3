@@ -31,7 +31,7 @@ public class UserTest {
                 .userRole(ERol.VENDEDOR)
                 .birthday(LocalDate.of(2003, 5, 21))
                 .registration_date(LocalDate.of(2024, 4, 16))
-                .phone_number("+56912345678")
+                .phoneNumber("+56912345678")
                 .user_Country(country)
                 .userRoles(Collections.singletonList(rol))
                 .build();
@@ -43,7 +43,7 @@ public class UserTest {
         assertEquals(ERol.VENDEDOR, user.getUserRole());
         assertEquals(LocalDate.of(2003, 5, 21), user.getBirthday());
         assertEquals(LocalDate.of(2024, 4, 16), user.getRegistration_date());
-        assertEquals("+56912345678", user.getPhone_number());
+        assertEquals("+56912345678", user.getPhoneNumber());
         assertEquals(country, user.getUser_Country());
         assertEquals(1, user.getUserRoles().size());
         assertEquals(rol, user.getUserRoles().get(0));

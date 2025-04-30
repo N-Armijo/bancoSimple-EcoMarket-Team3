@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(newUser);
     }
 
-    public boolean existUserByPhoneNumber(String phoneNumber) {
+    public boolean existUserByphoneNumber(String phoneNumber) {
         return userRepository.existsByPhoneNumber(phoneNumber);
     }
 

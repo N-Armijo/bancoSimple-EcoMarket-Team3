@@ -82,8 +82,7 @@ public class WebSecurityConfig {
                                 //Productos
                                 .requestMatchers("/products/list").permitAll()
                                 .requestMatchers("/products/product/**").permitAll()
-                                .requestMatchers("/products/**").hasAuthority("VENDEDOR")//Modificar por id usuario
-                                .requestMatchers("/products/**").hasAuthority("ADMIN")
+                                .requestMatchers("/products/**").hasAnyAuthority("VENDEDOR","ADMIN")//Modificar por id usuario
                                 //Region
                                 .requestMatchers("/regions/list").permitAll()
                                 .requestMatchers("/regions/**").hasAuthority("ADMIN")

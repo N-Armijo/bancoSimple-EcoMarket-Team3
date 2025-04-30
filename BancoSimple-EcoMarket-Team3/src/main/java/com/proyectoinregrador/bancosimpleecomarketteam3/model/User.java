@@ -44,7 +44,7 @@ public class User {
     private LocalDate registration_date;
 
     @Column(name = "phone_number", nullable = true, unique = true)
-    private String phone_number;
+    private String phoneNumber;
 
     @ManyToOne
     @JoinColumn(name = "user_country", nullable = true)
