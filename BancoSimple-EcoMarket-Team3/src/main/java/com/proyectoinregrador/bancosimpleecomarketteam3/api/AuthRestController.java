@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @CrossOrigin("*")
 @RestController
@@ -36,17 +36,13 @@ import java.util.List;
 public class AuthRestController {
 
     private final AuthenticationManager authenticationManager;
-
     private final UserServiceImpl userService;
-
     private final RolService rolService;
-
     private final PasswordEncoder passwordEncoder;
-
     private final JwtUtils jwtUtils;
 
-    @PostMapping("login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginRequest){
+    @PostMapping("/login")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
         );
@@ -57,28 +53,48 @@ public class AuthRestController {
 
         String jwtToken = jwtUtils.generateJwtToken(userDetails);
 
-        return new ResponseEntity<>(new JwtResponse(jwtToken, userDetails.getUsername(),userDetails.getEmail(), (List<GrantedAuthority>) userDetails.getAuthorities()), HttpStatus.OK);
+        return new ResponseEntity<>(new JwtResponse(
+                jwtToken,
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                (List<GrantedAuthority>) userDetails.getAuthorities()),
+                HttpStatus.OK);
     }
 
     @PostMapping("/registro")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupDTO solicitudRegistro){
-        if (userService.existUserByEmail(solicitudRegistro.getEmail())){
-            return ResponseEntity.badRequest().body(new String("Error: el email ya esta en uso."));
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupDTO solicitudRegistro) {
+        if (userService.existUserByEmail(solicitudRegistro.getEmail())) {
+            return ResponseEntity.badRequest().body("Error: el email ya está en uso.");
         }
 
+        // Construir usuario con campos obligatorios
         User user = User.builder()
                 .name(solicitudRegistro.getName())
                 .email(solicitudRegistro.getEmail())
                 .password(passwordEncoder.encode(solicitudRegistro.getPassword()))
-                .birthday(solicitudRegistro.getBirthday())
+                .registration_date(LocalDate.now())
                 .build();
 
+        // Campos opcionales
+        if (solicitudRegistro.getPhone_number() != null && !solicitudRegistro.getPhone_number().isEmpty()) {
+            if (userService.existUserByPhoneNumber(solicitudRegistro.getPhone_number())) {
+                return ResponseEntity.badRequest().body("Error: el número de teléfono ya está en uso.");
+            }
+            user.setPhone_number(solicitudRegistro.getPhone_number());
+        }
+
+        if (solicitudRegistro.getBirthday() != null) {
+            user.setBirthday(solicitudRegistro.getBirthday());
+        }
+
+        // Manejo de roles
         List<String> strRol = solicitudRegistro.getRoles();
         List<Rol> roles = new ArrayList<>();
-        if (strRol == null){
+
+        if (strRol == null || strRol.isEmpty()) {
             Rol rolUsuario = rolService.findByName(ERol.COMPRADOR)
                     .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado."));
-                roles.add(rolUsuario);
+            roles.add(rolUsuario);
         } else {
             strRol.forEach(role -> {
                 switch (role.toUpperCase()) {
@@ -92,7 +108,6 @@ public class AuthRestController {
                                 .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado"));
                         roles.add(rolAdmin);
                         break;
-
                     default:
                         Rol rolUsuario = rolService.findByName(ERol.COMPRADOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado"));
@@ -100,25 +115,21 @@ public class AuthRestController {
                 }
             });
         }
-        System.out.println(solicitudRegistro.getBirthday());
+
         user.setUserRoles(roles);
         user.setUserRole(roles.get(0).getName());
         userService.saveUser(user);
 
-        return new ResponseEntity<>(new String("Usuario registrado exitosamente!"), HttpStatus.CREATED);
+        return ResponseEntity.ok("Usuario registrado exitosamente!");
     }
 
     @AllArgsConstructor
     @Getter
     @Setter
-    public class JwtResponse {
+    public static class JwtResponse {
         private String token;
-
         private String username;
-
         private String email;
-
         private List<GrantedAuthority> roles;
     }
-
 }

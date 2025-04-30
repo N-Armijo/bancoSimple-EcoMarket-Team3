@@ -36,7 +36,7 @@ public class User {
     @Column(nullable = false)
     private ERol userRole;
     @Schema(example = "2000-04-04")
-    @Column(name = "birthday", nullable = false)
+    @Column(name = "birthday", nullable = true)
     private LocalDate birthday;
 
     @CreationTimestamp

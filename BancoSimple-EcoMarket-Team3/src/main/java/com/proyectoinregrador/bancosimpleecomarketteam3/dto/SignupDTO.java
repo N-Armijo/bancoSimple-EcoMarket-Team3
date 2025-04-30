@@ -27,6 +27,7 @@ public class SignupDTO {
     @Size(min = 6, max = 40)
     private String password;
 
+    @Size(min = 8, max = 20)
     private String phone_number;
 
     private LocalDate birthday;

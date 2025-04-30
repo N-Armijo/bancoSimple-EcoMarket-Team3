@@ -58,38 +58,38 @@ public class WebSecurityConfig {
                                 //Login y Registro
                                 .requestMatchers("/api/auth/**").permitAll()
                                 //Categories
-                                .requestMatchers("/categories/**").hasAuthority("ADMIN")
                                 .requestMatchers("/categories/list").permitAll()
+                                .requestMatchers("/categories/**").hasAuthority("ADMIN")
                                 //Comuna
-                                .requestMatchers("/comunes/**").hasAuthority("ADMIN")
                                 .requestMatchers("/comunes/list").permitAll()
+                                .requestMatchers("/comunes/**").hasAuthority("ADMIN")
                                 //Pais
-                                .requestMatchers("/countries/**").hasAuthority("ADMIN")
                                 .requestMatchers("/countries/list").permitAll()
+                                .requestMatchers("/countries/**").hasAuthority("ADMIN")
                                 //Detalle del producto
-                                .requestMatchers("/detailorders/**").hasAuthority("ADMIN")
                                 .requestMatchers("/detailorders/new").permitAll()
                                 .requestMatchers("/detailorders/list").permitAll()//Modificar por id usuario
                                 .requestMatchers("/detailorders/detailorder/**").permitAll()//Modificar por id usuario
+                                .requestMatchers("/detailorders/**").hasAuthority("ADMIN")
                                 //Dirección
-                                .requestMatchers("/directions/**").hasAuthority("ADMIN")
                                 .requestMatchers("/directions/list").permitAll()
+                                .requestMatchers("/directions/**").hasAuthority("ADMIN")
                                 //Orden Productos
-                                .requestMatchers("/orderproducts/**").hasAuthority("ADMIN")
                                 .requestMatchers("/orderproducts/orderproduct/**").permitAll()//Modificar por id usuario
                                 .requestMatchers("/orderproducts/new").permitAll()
                                 .requestMatchers("/orderproducts/edit").permitAll()//Modificar por id usuario
+                                .requestMatchers("/orderproducts/**").hasAuthority("ADMIN")
                                 //Productos
-                                .requestMatchers("/products/**").hasAuthority("ADMIN")
-                                .requestMatchers("/products/**").hasAuthority("VENDEDOR")//Modificar por id usuario
                                 .requestMatchers("/products/list").permitAll()
                                 .requestMatchers("/products/product/**").permitAll()
+                                .requestMatchers("/products/**").hasAuthority("VENDEDOR")//Modificar por id usuario
+                                .requestMatchers("/products/**").hasAuthority("ADMIN")
                                 //Region
-                                .requestMatchers("/regions/**").hasAuthority("ADMIN")
                                 .requestMatchers("/regions/list").permitAll()
+                                .requestMatchers("/regions/**").hasAuthority("ADMIN")
                                 //Usuarios
-                                .requestMatchers("/users/**").hasAuthority("ADMIN")
                                 .requestMatchers("/users/edit").permitAll()//Modificar por id usuario
+                                .requestMatchers("/users/**").hasAuthority("ADMIN")
                                 .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
 

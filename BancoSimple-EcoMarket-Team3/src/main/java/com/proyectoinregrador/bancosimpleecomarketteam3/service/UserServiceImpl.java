@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(newUser);
     }
 
+    public boolean existUserByPhoneNumber(String phoneNumber) {
+        return userRepository.existsByPhoneNumber(phoneNumber);
+    }
 
     public Optional<User> findUserByEmail(String email){
         return userRepository.findByEmail(email);
