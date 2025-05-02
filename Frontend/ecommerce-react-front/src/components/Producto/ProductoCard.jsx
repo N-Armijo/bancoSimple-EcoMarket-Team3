@@ -40,7 +40,7 @@ const ProductCard = ({ producto, colors }) => (
  
     
     <Link
-      to={`/producto/${producto.id}`}
+      to={`/ecoMarket/producto/${producto.id}`}
       style={{
         display: "block",
         padding: "0.5rem",

@@ -52,7 +52,7 @@ export default function Footer() {
           {/* Componente Link de MUI */}
           <Link
             component={RouterLink} 
-            to={"/nosotros"} 
+            to={"/ecoMarket/nosotros"} 
             color="inherit" // Hereda el color del contenedor padre
             underline="hover" // Subrayado solo al hover
             sx={{
@@ -66,7 +66,7 @@ export default function Footer() {
 
           <Link
             component={RouterLink} 
-            to={"/productos"} 
+            to={"/ecoMarket/productos"} 
             color="inherit"
             underline="hover"
             sx={{
@@ -80,7 +80,7 @@ export default function Footer() {
 
           <Link
             component={RouterLink} 
-            to={"/contacto"}
+            to={"/ecoMarket/contacto"}
             color="inherit"
             underline="hover"
             sx={{

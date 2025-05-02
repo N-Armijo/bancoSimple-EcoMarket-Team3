@@ -2,8 +2,7 @@ import React from "react";
 import GridProducto from "../components/Producto/GridProducto";
 import { useTheme } from "../Context/themeContext";
 
-
-export default function Prendas() {
+export default function Home() {
     const { colors } = useTheme();
     return (
         <>
@@ -28,8 +27,8 @@ export default function Prendas() {
                     textAlign: "center",
                     marginBottom: "2rem",
                 }}
-                >Prendas para todas las ocasiones</h1>
-                <GridProducto categoria="prendas"/>
+                >Los mejores productos para vivir feliz</h1>
+                <GridProducto />
             </div>
         </section>
             

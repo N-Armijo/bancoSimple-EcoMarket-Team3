@@ -28,7 +28,7 @@ export default function Juguetes() {
                     textAlign: "center",
                     marginBottom: "2rem",
                 }}
-                >Prendas para todas las ocasiones</h1>
+                >Juguetes para todas las edades</h1>
                 <GridProducto categoria="Juguetes"/>
             </div>
         </section>

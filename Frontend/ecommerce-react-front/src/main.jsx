@@ -1,14 +1,27 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import App from "./App.jsx";
+import { CartProvider } from "./Context/CardProvider.jsx";
+import BancoSimple from "./pages/Banco/BancoSimple.jsx";
+import LoginBanco from "./pages/Banco/loginBanco.jsx";
+import RegisterBanco from "./pages/Banco/registerBanco.jsx";
 
-createRoot(document.getElementById('root')).render(
-
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>,
-)
+createRoot(document.getElementById("root")).render(
+  <CartProvider>
+    <StrictMode>
+      <BrowserRouter>
+        <Routes>
+          {/* Ruta para la tienda */}
+          <Route path="/*" element={<App />} />
+          {/* Ruta para BancoSimple */}
+          <Route path="/bancoSimple" element={<BancoSimple />} />
+          <Route path="/bancoSimple/loginBanco" element={<LoginBanco />} />
+          <Route path="/bancoSimple/registerBanco" element={<RegisterBanco />} />
+          {/* Ruta para el carrito */}
+        </Routes>
+      </BrowserRouter>
+    </StrictMode>
+  </CartProvider>
+);

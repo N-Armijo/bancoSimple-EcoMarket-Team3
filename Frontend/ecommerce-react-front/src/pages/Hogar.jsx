@@ -30,7 +30,7 @@ export default function Hogar() {
                             textAlign: "center",
                             marginBottom: "2rem"
                         }}
-                    >Productos alimenticios variados</h1>
+                    >Productos para casa</h1>
                     <GridProducto categoria="Hogar"/>
                 </div>
         </section>

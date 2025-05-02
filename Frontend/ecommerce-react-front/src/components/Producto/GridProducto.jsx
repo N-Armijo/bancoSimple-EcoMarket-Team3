@@ -7,6 +7,7 @@ import { productoService } from "../../service/ProductoService";
 import Juguetes from "../../pages/Juguetes";
 import { categoriaService } from "../../service/CategoriaService";
 
+
 export default function GridProducto({ categoria }) {
     //Usamos los colores del tema oscuro
     const { colors } = useTheme();
@@ -63,8 +64,15 @@ export default function GridProducto({ categoria }) {
         const fetchData = async() => {
             try {
                 setCargando(true);
-                const data = await productoService.getByCategory(categoria);
+                let data;
+                if (categoria) {
+                    data = await productoService.getByCategory(categoria);
+                } else {
+                    data = await productoService.getAll();
+                }
+
                 setProductos(data);
+
             } catch (error) {
                 setError(error);
                 console.log(error);

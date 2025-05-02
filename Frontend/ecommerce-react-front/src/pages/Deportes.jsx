@@ -28,7 +28,7 @@ export default function Deportes() {
                     textAlign: "center",
                     marginBottom: "2rem",
                 }}
-                >Prendas para todas las ocasiones</h1>
+                >Prendas para deportes</h1>
                 <GridProducto categoria="Deportes"/>
             </div>
         </section>

@@ -1,11 +1,14 @@
 import React from "react";
 import logo from '../../assets/logo.jpeg';
 import cart from '../../assets/cart.svg';
+import Tulio from '../../assets/Tulio.png';
 import './Navbar.css';
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 // Importamos el hook useTheme desde nuestro contexto de tema personalizado
 import { useTheme } from "../../Context/themeContext";
+import { useUser } from "../../Context/UserContext";
 
 
 export default function Navbar() {
@@ -14,7 +17,21 @@ export default function Navbar() {
   // - toggleTheme: función para alternar entre temas
   // - colors: objeto con los colores del tema actual
   const { darkMode, toggleTheme, colors} = useTheme();
+  const { usuario, logout } = useUser()
 
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuAbierto((prev) => !prev);
+  };
+
+  // Cierra sesión y redirige
+  const cerrarSesion = () => {
+    logout();
+    setMenuAbierto(false);
+  };
+
+  
   return (
     <div
       className="navbar"
@@ -28,38 +45,38 @@ export default function Navbar() {
       }}
     >
       {/* Logo */}
-      <div className="nav-logo">
-        <img src={logo} alt="logo" />
-        
-      </div>
-
       
+      <div className="nav-logo">
+        <Link to="/">
+        <img src={logo} alt="logo" />
+        </Link>
+      </div>
 
       {/* Menú de navegación con color de texto dinámico */}
       <ul className="nav-menu"
         >
         <Link
-          to={"/electronica"}
+          to={"/ecoMarket/electronica"}
           style={{color:colors.text, textDecoration:"none"}}>
         <li style={{ color: colors.text }}>Electrónica</li>
         </Link>
         <Link
-          to={"/ropa"}
+          to={"/ecoMarket/ropa"}
           style={{color:colors.text, textDecoration:"none"}}>
         <li style={{ color: colors.text }}>Ropa</li>
         </Link>
         <Link
-          to={"/hogar"}
+          to={"/ecoMarket/hogar"}
           style={{color:colors.text, textDecoration:"none"}}>
         <li style={{ color: colors.text }}>Hogar</li>
         </Link>
         <Link
-          to={"/deportes"}
+          to={"/ecoMarket/deportes"}
           style={{color:colors.text, textDecoration:"none"}}>
         <li style={{ color: colors.text }}>Deportes</li>
         </Link>
         <Link
-          to={"/juguetes"}
+          to={"/ecoMarket/juguetes"}
           style={{color:colors.text, textDecoration:"none"}}>
         <li style={{ color: colors.text }}>Juguetes</li>
         </Link>
@@ -68,18 +85,118 @@ export default function Navbar() {
 
       {/* Contenedor de login/carrito/tema */}
       <div className="nav-login-cart">
+        <Link  to="/ecoMarket/carrito" style={{textDecoration:"none"}}>
+        <img className="carrito-img" src={cart} alt="carrito"/>
+        </Link>
         
-      <img className="carrito-img" src={cart} alt="carrito" />
-      
-        <button
-          style={{
-            borderColor: colors.primary,
-            color: colors.login,
-            
-          }}
-        >
-          Login
-        </button>
+
+        {usuario ? (
+        <div style={{ position: "relative", marginRight: "1rem" }}>
+          <div
+            onClick={toggleMenu}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              backgroundColor: "#46A46B",
+              borderRadius: "10px",
+              padding: "0.5rem 1rem",
+              cursor: "pointer",
+              userSelect: "none",
+              boxShadow: "4px 4px 1px rgba(17, 23, 75, 1)",
+            }}
+          >
+            <img
+              src={Tulio}
+              alt="Foto de perfil"
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                marginRight: "0.75rem",
+                objectFit: "cover",
+              }}
+            />
+            <span
+              style={{
+                color: "black",
+                fontWeight: "bold",
+                fontSize: "1.1rem",
+                marginRight: "0.5rem",
+              }}
+            >
+              {usuario.username}
+            </span>
+            <span style={{ fontSize: "1.2rem" }}>{menuAbierto ? "▲" : "▼"}</span>
+          </div>
+
+          {menuAbierto && (
+            <div
+              style={{
+                position: "absolute",
+                top: "100%",
+                right: 0,
+                backgroundColor: "white",
+                borderRadius: "10px",
+                boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+                marginTop: "0.5rem",
+                zIndex: 1000,
+                minWidth: "180px",
+              }}
+            >
+              <Link
+                to="/ecoMarket/perfil"
+                style={{
+                  display: "block",
+                  padding: "0.75rem 1rem",
+                  textDecoration: "none",
+                  color: "#333",
+                }}
+                onClick={() => setMenuAbierto(false)}
+              >
+                Mi perfil
+              </Link>
+              <Link
+                to="/bancoSimple"
+                style={{
+                  display: "block",
+                  padding: "0.75rem 1rem",
+                  textDecoration: "none",
+                  color: "#333",
+                }}
+                onClick={() => setMenuAbierto(false)}
+              >
+                Sistema Bancario
+              </Link>
+              <div
+                onClick={cerrarSesion}
+                style={{
+                  padding: "0.75rem 1rem",
+                  cursor: "pointer",
+                  color: "#b30000",
+                  fontWeight: "bold",
+                }}
+              >
+                Cerrar sesión
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+        <Link to="/ecoMarket/login">
+          <button
+            style={{
+              height: "50px",
+              width: "100px",
+
+              borderColor: colors.primary,
+              color: colors.login,
+              boxShadow: "4px 4px 1px rgba(17, 23, 75, 1)",
+            }}
+          >
+            Login
+          </button>
+        </Link>
+      )}
 
         
         

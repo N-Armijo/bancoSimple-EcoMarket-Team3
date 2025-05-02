@@ -80,6 +80,7 @@ public class AuthRestController {
                 .password(passwordEncoder.encode(solicitudRegistro.getPassword()))
                 .registration_date(LocalDate.now())
                 .build();
+        System.out.println(user.toString());
 
         if (exitePorGmail !=null) {
            if( exitePorGmail.getUserRole().equals(ERol.BANK) && !exitePorGmail.getUserRole().equals(ERol.COMPRADOR) && !exitePorGmail.getUserRole().equals(ERol.VENDEDOR) ){
