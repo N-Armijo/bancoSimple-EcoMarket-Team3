@@ -153,7 +153,7 @@ public class AuthRestController {
         return ResponseEntity.ok("Usuario registrado exitosamente!");
     }
 
-    @PostMapping("/registerBanco")
+    @PostMapping("/registroBanco")
     public ResponseEntity<?> registerUserBank(@Valid @RequestBody SignupDTO solicitudRegistro) {
 
         Bank_account cuentaBanco = new Bank_account();
@@ -254,7 +254,7 @@ public class AuthRestController {
         return sb.toString();
     }
 
-    @PostMapping("/loginBank")
+    @PostMapping("/loginBanco")
     public ResponseEntity<?> authenticateUserBank(@Valid @RequestBody LoginDTO loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())

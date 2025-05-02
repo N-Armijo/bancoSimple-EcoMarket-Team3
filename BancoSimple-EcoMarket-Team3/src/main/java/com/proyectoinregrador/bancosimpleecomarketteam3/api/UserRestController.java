@@ -1,5 +1,6 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.api;
 
+import com.proyectoinregrador.bancosimpleecomarketteam3.model.Bank_account;
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.User;
 import com.proyectoinregrador.bancosimpleecomarketteam3.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +47,11 @@ public class UserRestController {
         }else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/userEmail")
+    public ResponseEntity<User> findByEmail(@RequestBody User user){
+        return ResponseEntity.ok(userService.findByEmail(user.getEmail()));
     }
 
 

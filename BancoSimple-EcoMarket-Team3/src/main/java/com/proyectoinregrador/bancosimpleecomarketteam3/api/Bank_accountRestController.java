@@ -23,7 +23,6 @@ public class Bank_accountRestController {
     }
     @GetMapping("/accountEmail")
     public ResponseEntity<Bank_account> findByEmail(@RequestBody User user){
-
         return ResponseEntity.ok(bankAccountService.findByEmail(user.getEmail()));
     }
 

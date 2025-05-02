@@ -88,10 +88,18 @@ public class WebSecurityConfig {
                                 .requestMatchers("/regions/**").hasAuthority("ADMIN")
                                 //Usuarios
                                 .requestMatchers("/users/edit").permitAll()//Modificar por id usuario
+                                .requestMatchers("/users/userEmail").hasAnyAuthority("VENDEDOR","COMPRADOR","BANK")
                                 .requestMatchers("/users/**").hasAuthority("ADMIN")
                                 .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
                                 //Banco
                                 .requestMatchers("/accounts/**").hasAuthority("BANK")
+                                .requestMatchers("/transactions/**").hasAuthority("BANK")
+                                .requestMatchers("/cards/**").hasAuthority("BANK")
+                                .requestMatchers("/be-pass/**").hasAuthority("BANK")
+                                .requestMatchers("/tickets/**").hasAuthority("BANK")
+                                .requestMatchers("/desctickets/**").hasAuthority("BANK")
+
+
                                 .anyRequest().authenticated()
 
                         );
