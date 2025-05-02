@@ -55,13 +55,22 @@ public class AuthRestController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         String jwtToken = jwtUtils.generateJwtToken(userDetails);
+        User user = userService.findByEmail(loginRequest.getEmail());
+        if( (user.getUserRole().equals(ERol.COMPRADOR) || user.getUserRoles().stream().equals(ERol.COMPRADOR) || user.getUserRoles().stream().anyMatch(x -> x.getName().equals(ERol.COMPRADOR) ))
+                || (user.getUserRole().equals(ERol.VENDEDOR) || user.getUserRoles().stream().equals(ERol.VENDEDOR) || user.getUserRoles().stream().anyMatch(x -> x.getName().equals(ERol.VENDEDOR) ))
+                || (user.getUserRole().equals(ERol.ADMIN) || user.getUserRoles().stream().equals(ERol.ADMIN) || user.getUserRoles().stream().anyMatch(x -> x.getName().equals(ERol.ADMIN) ))
+        ) {
+            return new ResponseEntity<>(new JwtResponse(
+                    jwtToken,
+                    userDetails.getUsername(),
+                    userDetails.getEmail(),
+                    (List<GrantedAuthority>) userDetails.getAuthorities()),
+                    HttpStatus.OK);
+        }
 
-        return new ResponseEntity<>(new JwtResponse(
-                jwtToken,
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                (List<GrantedAuthority>) userDetails.getAuthorities()),
-                HttpStatus.OK);
+
+        return ResponseEntity.badRequest().body("Error: el usuario no Existe en el EcoMarket.");
+
     }
 
     @PostMapping("/registro")
