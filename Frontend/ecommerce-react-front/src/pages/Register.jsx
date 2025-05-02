@@ -17,8 +17,9 @@ import {
   Stack,
   Card as MuiCard,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
+
 import { useTheme } from "../Context/themeContext";
+import { styled } from "@mui/material/styles";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",

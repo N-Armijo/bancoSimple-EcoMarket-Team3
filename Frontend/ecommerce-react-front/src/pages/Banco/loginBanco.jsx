@@ -1,111 +1,158 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Box, Typography, TextField, Button, Link } from "@mui/material";
-import logo from "../../assets/logo.jpeg"; // Asegúrate de que el logo esté en esta ruta
+import * as React from "react";
+import {
+  Box,
+  Button,
+  Checkbox,
+  CssBaseline,
+  Divider,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Link,
+  TextField,
+  Typography,
+  Stack,
+  Card as MuiCard,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 
-const LoginBanco = ({ setIsLoggedIn }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+import { usuarioService } from "../../service/UsuarioService";
+import { useNavigate } from "react-router-dom"; 
+import { useUser } from "../../Context/UserContext";
+
+const Card = styled(MuiCard)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignSelf: "center",
+  width: "100%",
+  padding: theme.spacing(4),
+  gap: theme.spacing(2),
+  margin: "auto",
+  boxShadow:
+    "hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px",
+  [theme.breakpoints.up("sm")]: {
+    width: "450px",
+  },
+}));
+
+export default function Login() {
+  
   const navigate = useNavigate();
+  const { login } = useUser();
 
-  const handleLogin = (e) => {
+  const [emailError, setEmailError] = React.useState(false);
+  const [passwordError, setPasswordError] = React.useState(false);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const email = data.get("email");
+    const password = data.get("password");
+    const name = data.get("username");
 
-    // Simulación de autenticación
-    if (email === "usuario@banco.com" && password === "123456") {
-      setIsLoggedIn(true); // Cambia el estado de inicio de sesión
-      navigate("/bancoSimple"); // Redirige a la página principal del banco
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      setEmailError(true);
+      return;
     } else {
-      setError("Correo o contraseña incorrectos.");
+      setEmailError(false);
     }
+
+    if (!password || password.length < 6) {
+      setPasswordError(true);
+      return;
+    } else {
+      setPasswordError(false);
+    }
+
+    usuarioService
+      .loginBanco({ email, password })
+      .then((response) => {
+        console.log("Respuesta del servidor:", response);
+
+        localStorage.setItem("username", response.username || email);
+        if (response.jwt) {
+          localStorage.setItem("token", response.jwt);
+        }
+
+        //Redirige al home
+        navigate("/bancoSimple/home", { replace: true });
+        login(response);
+        
+      })
+      .catch((error) => {
+        console.error("Error al iniciar sesión:", error);
+        // Aquí puedes mostrar un mensaje de error al usuario
+      });
   };
 
   return (
-    <Box sx={{ display: "flex", height: "100vh", backgroundColor: "#f5f5dc" }}>
-      {/* Sidebar */}
-      <Box
-        sx={{
-          width: "20%",
-          backgroundColor: "#4caf50",
+    <>
+      <CssBaseline />
+      <section
+        style={{
+          backgroundColor: "white",
+          minHeight: "100vh",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "2rem 1rem",
-        }}
-      >
-        {/* Logo */}
-        <Box sx={{ marginBottom: "2rem" }}>
-          <img src={logo} alt="Logo BancoSimple" style={{ width: "200px" }} />
-        </Box>
-
-        {/* Footer Links */}
-        <Box sx={{ textAlign: "center", width: "100%" }}>
-          <Box sx={{ display: "flex", justifyContent: "space-around", marginBottom: "1rem" }}>
-            <Link href="#" underline="hover" sx={{ color: "#000000", fontWeight: "bold" }}>
-              Nosotros
-            </Link>
-            <Link href="#" underline="hover" sx={{ color: "#000000", fontWeight: "bold" }}>
-              Contacto
-            </Link>
-          </Box>
-          <Typography variant="body2" sx={{ color: "#000000" }}>
-            © 2025 BancoSimple
-          </Typography>
-        </Box>
-      </Box>
-
-      {/* Main Content */}
-      <Box
-        sx={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          padding: "2rem",
         }}
       >
-        <Typography variant="h4" sx={{ marginBottom: "2rem" }}>
-          Iniciar Sesión - BancoSimple
-        </Typography>
-        <form onSubmit={handleLogin} style={{ width: "300px" }}>
-          <TextField
-            label="Correo electrónico"
-            type="email"
-            fullWidth
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            sx={{ marginBottom: "1rem" }}
-          />
-          <TextField
-            label="Contraseña"
-            type="password"
-            fullWidth
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            sx={{ marginBottom: "1rem" }}
-          />
-          {error && (
-            <Typography color="error" sx={{ marginBottom: "1rem" }}>
-              {error}
-            </Typography>
-          )}
-          <Button type="submit" variant="contained" fullWidth sx={{ backgroundColor: "#4caf50" }}>
+        <Card variant="outlined">
+          <Typography component="h1" variant="h4" textAlign="center">
             Iniciar Sesión
-          </Button>
-        </form>
-        <Typography sx={{ marginTop: "1rem" }}>
-          ¿No tienes cuenta?{" "}
-          <Link href="/bancoSimple/registerBanco" sx={{ color: "#4caf50", fontWeight: "bold" }}>
-            Regístrate aquí
-          </Link>
-        </Typography>
-      </Box>
-    </Box>
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+          >
+            <FormControl>
+              <FormLabel htmlFor="email">Correo electrónico</FormLabel>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                name="email"
+                placeholder="correo@ejemplo.com"
+                error={emailError}
+                helperText={emailError ? "Correo inválido" : ""}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="password">Contraseña</FormLabel>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                type="password"
+                id="password"
+                placeholder="••••••"
+                error={passwordError}
+                helperText={
+                  passwordError
+                    ? "La contraseña debe tener al menos 6 caracteres"
+                    : ""
+                }
+              />
+            </FormControl>
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label="Recordarme"
+            />
+            <Button type="submit" fullWidth variant="contained">
+              Iniciar sesión
+            </Button>
+          </Box>
+          <Divider />
+          <Typography sx={{ textAlign: "center", mt: 2 }}>
+            ¿No tienes cuenta?{" "}
+            <Link href="/bancoSimple/registerBanco" variant="body2">
+              Regístrate aquí
+            </Link>
+          </Typography>
+        </Card>
+      </section>
+    </>
   );
-};
-
-export default LoginBanco;
+}
