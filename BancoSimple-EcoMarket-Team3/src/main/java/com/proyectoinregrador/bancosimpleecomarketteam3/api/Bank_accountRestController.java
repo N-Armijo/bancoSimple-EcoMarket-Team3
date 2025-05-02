@@ -1,6 +1,7 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.api;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Bank_account;
+import com.proyectoinregrador.bancosimpleecomarketteam3.model.User;
 import com.proyectoinregrador.bancosimpleecomarketteam3.service.Bank_accountServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,11 @@ public class Bank_accountRestController {
     @GetMapping("/account/{id}")
     public ResponseEntity<Bank_account> findById(@PathVariable Long id){
         return ResponseEntity.ok(bankAccountService.findById(id));
+    }
+    @GetMapping("/accountEmail")
+    public ResponseEntity<Bank_account> findByEmail(@RequestBody User user){
+
+        return ResponseEntity.ok(bankAccountService.findByEmail(user.getEmail()));
     }
 
     @GetMapping("/list")

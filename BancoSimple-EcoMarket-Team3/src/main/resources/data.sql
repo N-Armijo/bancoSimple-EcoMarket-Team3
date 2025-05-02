@@ -26,7 +26,8 @@ INSERT IGNORE INTO commune (id, name, zip_code, commune_region) VALUES
 INSERT IGNORE INTO rol (id, name, description) VALUES
                                         (1, 'ADMIN', 'Administrador del sistema'),
                                         (2, 'COMPRADOR', 'Usuario estándar'),
-                                        (3, 'VENDEDOR', 'Vendedor de productos');
+                                        (3, 'VENDEDOR', 'Vendedor de productos'),
+                                        (4, 'BANK', 'Usuario del banco');
 
 -- Tabla user con IDs explícitos
 INSERT IGNORE INTO user (id, name, email, password, birthday, registration_date, phone_number, user_country) VALUES

@@ -1,7 +1,9 @@
 package com.proyectoinregrador.bancosimpleecomarketteam3.service;
 
 import com.proyectoinregrador.bancosimpleecomarketteam3.model.Bank_account;
+import com.proyectoinregrador.bancosimpleecomarketteam3.model.User;
 import com.proyectoinregrador.bancosimpleecomarketteam3.repository.Bank_accountRepository;
+import io.swagger.v3.core.util.Json;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,18 @@ public class Bank_accountServiceImpl implements Bank_accountService {
         return bank_accountRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Bank_account not found")
         );
+    }
+
+    @Override
+    public Bank_account findByEmail(String email) {
+        
+        System.out.println("Email: " + email);
+
+        return bank_accountRepository.findAll()
+                .stream()
+                .filter(account -> account.getBank_User().getEmail().equals(email))
+                .findFirst()
+                .orElse(null); // o lanza una excepción
     }
 
     @Override

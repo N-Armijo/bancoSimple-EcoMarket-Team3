@@ -25,7 +25,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByEmail(String email) {
-        return null;
+
+        return userRepository.findAll().stream()
+                .filter(account -> account.getEmail().equals(email))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

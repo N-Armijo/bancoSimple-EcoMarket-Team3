@@ -90,6 +90,8 @@ public class WebSecurityConfig {
                                 .requestMatchers("/users/edit").permitAll()//Modificar por id usuario
                                 .requestMatchers("/users/**").hasAuthority("ADMIN")
                                 .requestMatchers("/swagger-ui.html","/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
+                                //Banco
+                                .requestMatchers("/accounts/**").hasAuthority("BANK")
                                 .anyRequest().authenticated()
 
                         );
