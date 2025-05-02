@@ -49,7 +49,7 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/userEmail")
+    @PostMapping("/userEmail")
     public ResponseEntity<User> findByEmail(@RequestBody User user){
         return ResponseEntity.ok(userService.findByEmail(user.getEmail()));
     }
